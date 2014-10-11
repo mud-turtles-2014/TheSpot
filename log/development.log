@@ -105,3 +105,8 @@ Migrating to CreateFavorites (20141010191900)
   [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"   ORDER BY "users"."id" ASC LIMIT 1[0m
   [1m[35mFavorite Load (0.8ms)[0m  SELECT  "favorites".* FROM "favorites"   ORDER BY "favorites"."id" ASC LIMIT 1
   [1m[36mSpot Load (0.9ms)[0m  [1mSELECT "spots".* FROM "spots"[0m
+  [1m[36m (3.6ms)[0m  [1mCREATE DATABASE "TheSpot_development" ENCODING = 'unicode'[0m
+PG::DuplicateDatabase: ERROR:  database "TheSpot_development" already exists
+: CREATE DATABASE "TheSpot_development" ENCODING = 'unicode'
+  [1m[35mActiveRecord::SchemaMigration Load (1.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
