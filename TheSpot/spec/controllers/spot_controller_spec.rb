@@ -2,6 +2,11 @@ require 'spec_helper'
 require 'rails_helper'
 
 describe SpotsController do
+  describe "#index" do
+    it "assigns all spots to @spots"
+    it "renders the #index template"
+  end
+
   describe "#new" do
     it "assigns a new spot to @spot"
     it "renders the #new template"
