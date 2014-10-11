@@ -98,7 +98,15 @@ describe SpotsController do
   end
 
   describe "#destroy" do 
-    it "deletes the spot from the database"
-    it "redirects to spot index"
+    it "deletes the spot from the database" do
+      spot = Spot.create!(name:"Rafael's Bakery", address:"100 Ninth Avenue New York, NY 10013", phone:"212-999-9555", price: 4)
+      delete :destroy, id: spot
+      expect(Spot.all).to_not include spot
+    end
+    it "redirects to spot index" do 
+      spot = Spot.create!(name:"Rafael's Bakery", address:"100 Ninth Avenue New York, NY 10013", phone:"212-999-9555", price: 4)
+      delete :destroy, id: spot
+      expect(response).to redirect_to spots_path
+    end
   end
 end
