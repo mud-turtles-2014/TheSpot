@@ -10,6 +10,7 @@ describe SpotsController do
     it "renders the #index template" do
       get :index
       expect(response).to render_template :index
+    end
   end
 
   describe "#new" do
@@ -54,7 +55,6 @@ describe SpotsController do
   describe "#edit" do
     it "assigns the spot to @spot"
     it "renders the :edit template"
-    end
   end
 
   describe "#update" do 
