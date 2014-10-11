@@ -76,8 +76,19 @@ describe SpotsController do
 
   describe "#update" do 
   	context "with valid attributes" do 
-  	  it "updates the database"
-  	  it "redirects to spot#show"
+  	  it "updates the database" do
+        spot = Spot.create!(name:"Rafael's Bakery", address:"100 Ninth Avenue New York, NY 10013", phone:"212-999-9555", price: 4)
+        new_name = "Rafa's"
+        put :update, id: spot, spot: {name: new_name}
+        spot.reload
+        expect(spot.name).to eq(new_name)
+      end
+  	  it "redirects to spot#show" do
+        spot = Spot.create!(name:"Rafael's Bakery", address:"100 Ninth Avenue New York, NY 10013", phone:"212-999-9555", price: 4)
+        new_name = "Rafa's"
+        put :update, id: spot, spot: {name: new_name}
+        expect(response).to redirect_to spot_path(assigns[:spot])
+      end
   	end
 
   	context "with invalid attributes" do 
