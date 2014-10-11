@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   resources :sessions
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
-  resources :favorites, only: [:create]
-  resources :spots
+  resources :spots do
+    resources :favorites, only: [:create]
+  end
   delete '/logout' => 'sessions#destroy'
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
