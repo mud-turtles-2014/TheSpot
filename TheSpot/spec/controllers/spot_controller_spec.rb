@@ -13,8 +13,14 @@ describe SpotsController do
   end
 
   describe "#new" do
-    it "assigns a new spot to @spot"
-    it "renders the #new template"
+    it "assigns a new spot to @spot" do
+      get :new
+      expect(assigns(:spot)).to be_an_instance_of Spot
+    end
+    it "renders the #new template" do
+      get :new
+      expect(response).to render_template :new
+    end
   end
 
   describe "#create" do
