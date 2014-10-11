@@ -41,7 +41,7 @@ describe SpotsController do
       user = User.create!(username:"polly123", email:"polly@gmail.com",password:"password", password_confirmation: "password")
       spot = Spot.create!(name:"Sarah's Bakery", address:"100 Fifth Avenue New York, NY 10003", phone:"212-555-555", price: 2)
       get :show, id: spot
-      expect(response).to render_template spot_path(assigns[:spot])
+      expect(response).to render_template :show
     end
   end
 
