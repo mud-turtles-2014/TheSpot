@@ -1,5 +1,5 @@
 class SpotsController < ApplicationController
-  before_filter :load_spot, only: [:show]
+  before_filter :load_spot, only: [:show, :edit]
   def index
   	@spots = Spot.all
   end
@@ -18,6 +18,9 @@ class SpotsController < ApplicationController
   	  else
   	    redirect_to new_spot_path
   	end
+  end
+
+  def edit
   end
 
   private
