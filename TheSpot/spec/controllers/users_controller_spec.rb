@@ -36,6 +36,20 @@ describe UsersController do
     end
   end
 
+  describe "#show" do
+    it "assigns the user to @user" do 
+      user = User.create!(username:"polly123", email:"polly@gmail.com",password:"password", password_confirmation: "password")
+      get :show, id: user
+      expect(assigns(:user)).to eq user
+    end
+
+    it "renders the show template" do 
+      user = User.create!(username:"polly123", email:"polly@gmail.com",password:"password", password_confirmation: "password")
+      get :show, id: user
+      expect(response).to render_template :show
+    end
+  end
+
   describe "#edit" do
     it "assigns the user to @user" do
       user = User.create!(username:"polly123", email:"polly@gmail.com",password:"password", password_confirmation: "password")
@@ -69,7 +83,26 @@ describe UsersController do
 
   	context "with invalid attributes" do 
   	  it "does not update the database"
-  	  it "renders the user#edit"
+  	  it "redirects to user#edit" do
+        user = User.create!(username:"polly123", email:"polly@gmail.com",password:"password", password_confirmation: "password")
+        new_email = "@gmail.com"
+        new_username = ""
+        put :update, id: user, user: {email: new_email, username: new_username}
+        expect(response).to redirect_to edit_user_path(assigns[:user])
+      end
   	end
+  end
+
+  describe "#destroy" do 
+    it "deletes the user from the database" do
+      user = User.create!(username:"polly123", email:"polly@gmail.com",password:"password", password_confirmation: "password")
+      delete :destroy, id: user
+      expect(User.all).to_not include user
+    end
+    it "redirects to spots_path" do
+      user = User.create!(username:"polly123", email:"polly@gmail.com",password:"password", password_confirmation: "password")
+      delete :destroy, id: user
+      expect(response).to redirect_to spots_path
+    end
   end
 end
