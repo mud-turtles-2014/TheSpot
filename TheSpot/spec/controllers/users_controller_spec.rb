@@ -20,7 +20,10 @@ describe UsersController do
           post :create, user: {username: "polly123", email: "polly@gmail.com", password: "password", password: "password"}
         }.to change(User, :count).by(1)
       end
-      it "redirects to the login page"
+      it "redirects to the login page" do
+      	post :create, user: {username: "polly123", email: "polly@gmail.com", password: "password", password: "password"}
+      	expect(response).to redirect_to '/login'
+      end
     end
 
     context "with invalid attributes" do
