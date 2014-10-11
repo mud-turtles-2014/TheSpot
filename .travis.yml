@@ -10,9 +10,4 @@ rvm:
 before_script:
   - psql -c 'create database TheSpot_test;' -U postgres
 
-script: 'bundle exec rake'
-
-# whitelist:
-branches:
-  only:
-    - master
+script: 'bundle exec rspec spec'

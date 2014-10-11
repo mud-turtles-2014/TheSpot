@@ -31,6 +31,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'travis'
 gem 'factory_girl_rails'
+gem 'dotenv-rails'
 
 # Use unicorn as the app server
 # gem 'unicorn'
