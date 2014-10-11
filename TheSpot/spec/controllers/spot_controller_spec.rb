@@ -31,8 +31,18 @@ describe SpotsController do
   end
 
   describe "#show" do
-    it "assigns the spot to @spot"
-    it "renders the show template"
+    it "assigns the spot to @spot" do 
+      user = User.create!(username:"polly123", email:"polly@gmail.com",password:"password", password_confirmation: "password")
+      spot = Spot.create!(name:"Sarah's Bakery", address:"100 Fifth Avenue New York, NY 10003", phone:"212-555-555", price: 2)
+      get :show, id: spot
+      expect(assigns(:spot)).to eq spot
+    end
+    it "renders the show template" do
+      user = User.create!(username:"polly123", email:"polly@gmail.com",password:"password", password_confirmation: "password")
+      spot = Spot.create!(name:"Sarah's Bakery", address:"100 Fifth Avenue New York, NY 10003", phone:"212-555-555", price: 2)
+      get :show, id: spot
+      expect(response).to render_template spot_path(assigns[:spot])
+    end
   end
 
   describe "#edit" do
