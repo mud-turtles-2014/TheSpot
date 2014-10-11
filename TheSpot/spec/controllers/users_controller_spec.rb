@@ -25,7 +25,10 @@ describe UsersController do
 
     context "with invalid attributes" do
       it "does not save the new user to the database"
-      it "redirects to the #new page"
+      it "redirects to the #new page" do 
+      	post :create, user: {username: "mollypolly", email: nil, password: "password", password_confimation: "password"}
+        expect(response).to redirect_to new_user_path
+      end
       it "assigns a flash to notify user of error"
     end
   end
