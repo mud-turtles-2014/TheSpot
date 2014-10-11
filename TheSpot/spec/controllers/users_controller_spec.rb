@@ -3,8 +3,14 @@ require 'rails_helper'
 
 describe UsersController do
   describe "#new" do
-    it "assigns a new user to @user"
-    it "renders the #new template"
+    it "assigns a new user to @user" do
+      get :new
+      expect(assigns(:user)).to be_an_instance_of User
+    end
+    it "renders the #new template" do
+      get :new
+      expect(response).to render_template :new
+    end
   end
 
   describe "#create" do
