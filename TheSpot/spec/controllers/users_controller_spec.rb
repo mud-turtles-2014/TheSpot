@@ -69,7 +69,13 @@ describe UsersController do
 
   	context "with invalid attributes" do 
   	  it "does not update the database"
-  	  it "renders the user#edit"
+  	  it "redirects to user#edit" do
+        user = User.create!(username:"polly123", email:"polly@gmail.com",password:"password", password_confirmation: "password")
+        new_email = "@gmail.com"
+        new_username = ""
+        put :update, id: user, user: {email: new_email, username: new_username}
+        expect(response).to redirect_to edit_user_path(assigns[:user])
+      end
   	end
   end
 end
