@@ -12,6 +12,12 @@ class SpotsController < ApplicationController
   end
 
   private
+  
+  def spot_params
+  	params.require(:user).permit([:name, :address, :phone, :website, :price, :photo])
+
+  end
+
   def load_spot
   	@spot = Spot.find(params[:id])
   end
