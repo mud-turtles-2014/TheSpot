@@ -3,8 +3,13 @@ require 'rails_helper'
 
 describe SpotsController do
   describe "#index" do
-    it "assigns all spots to @spots"
-    it "renders the #index template"
+    it "assigns all spots to @spots" do
+      get :index
+      expect(assigns(:spots)).to eq Spot.all
+    end
+    it "renders the #index template" do
+      get :index
+      expect(response).to render_template :index
   end
 
   describe "#new" do
