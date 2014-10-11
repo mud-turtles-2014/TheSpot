@@ -48,4 +48,28 @@ describe UsersController do
       expect(response).to render_template :edit
     end
   end
+
+  describe "#update" do 
+  	context "with valid attributes" do 
+  	  it "updates the database" do 
+		user = User.create!(username:"polly123", email:"polly@gmail.com",password:"password", password_confirmation: "password")
+        new_email = "molly@gmail.com"
+        put :update, id: user, user: {email: new_email}
+        user.reload
+        expect(user.email).to eq(new_email)
+  	  end
+  	  it "renders the user#show" do
+  	  	user = User.create!(username:"polly123", email:"polly@gmail.com",password:"password", password_confirmation: "password")
+        new_email = "molly@gmail.com"
+        put :update, id: user, user: {email: new_email}
+        user.reload
+        expect(response).to render_template :show
+  	  end
+  	end
+
+  	context "with invalid attributes" do 
+  	  it "does not update the database"
+  	  it "renders the user#edit"
+  	end
+  end
 end
