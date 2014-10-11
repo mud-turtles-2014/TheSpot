@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :favorites, only: [:create]
   resources :spots
   delete '/logout' => 'sessions#destroy'
+  resources :users, only: [:new, :create, :edit, :update, :show]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
