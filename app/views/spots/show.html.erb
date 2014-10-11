@@ -1,0 +1,10 @@
+<%= link_to 'Back', spots_path %><br>
+<h1><%= @spot.name %></h1>
+<%= link_to 'Edit', edit_spot_path(@spot) %><br>
+<%= @spot.address %><br>
+<%= @spot.phone %><br>
+<% if @spot.website %>
+<%= @spot.website %><br>
+<% end %>
+<%= show_price(@spot.price) %><br>
+<%= show_photo(@spot.photo) if @spot.photo %>
