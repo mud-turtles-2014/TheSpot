@@ -42,6 +42,10 @@ describe UsersController do
       get :edit, id: user
       expect(assigns(:user)).to eq user
     end
-    it "renders the :edit template"
+    it "renders the :edit template" do 
+		user = User.create!(username:"polly123", email:"polly@gmail.com",password:"password", password_confirmation: "password")
+      get :edit, id: user
+      expect(response).to render_template :edit
+    end
   end
 end
