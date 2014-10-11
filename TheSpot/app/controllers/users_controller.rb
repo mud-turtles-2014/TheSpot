@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_filter :load_user, only: [:edit, :update, :destroy]
+
   def new
   	@user = User.new
   end
@@ -15,11 +17,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-  	@user = User.find(params[:id])
   end
 
   def update
-  	@user = User.find(params[:id])
   	  if @user.update(user_params)
   	  	redirect_to user_path(@user)
   	  else
@@ -28,12 +28,17 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     redirect_to spots_path
   end
 
+  private
+
   def user_params 
   	params.require(:user).permit([:email, :username, :password, :password_confirmation])
+  end
+
+  def load_user
+    @user = User.find(params[:id])
   end
 end
