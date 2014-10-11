@@ -21,4 +21,15 @@ FactoryGirl.define do
       user_id nil
     end
   end
+
+  factory :comment do
+    user_id { create(:user).id }
+    spot_id { create(:spot).id }
+    body { "best cookies in the city" }
+
+    factory :invalid_comment do
+      user_id nil
+    end
+
+  end
 end
