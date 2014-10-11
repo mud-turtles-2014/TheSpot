@@ -62,8 +62,16 @@ describe SpotsController do
   end
 
   describe "#edit" do
-    it "assigns the spot to @spot"
-    it "renders the :edit template"
+    it "assigns the spot to @spot" do 
+      spot = Spot.create!(name:"Rafael's Bakery", address:"100 Ninth Avenue New York, NY 10013", phone:"212-999-9555", price: 4)
+      get :edit, id: spot
+      expect(assigns(:spot)).to eq spot
+    end
+    it "renders the :edit template" do
+      spot = Spot.create!(name:"Rafael's Bakery", address:"100 Ninth Avenue New York, NY 10013", phone:"212-999-9555", price: 4)
+      get :edit, id: spot
+      expect(response).to render_template :edit
+    end
   end
 
   describe "#update" do 
