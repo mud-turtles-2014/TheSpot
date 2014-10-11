@@ -1,5 +1,5 @@
 class SpotsController < ApplicationController
-  before_filter :load_spot, only: [:show, :edit, :update]
+  before_filter :load_spot, only: [:show, :edit, :update, :destroy]
   def index
   	@spots = Spot.all
   end
@@ -31,6 +31,11 @@ class SpotsController < ApplicationController
   def edit
   end
 
+  def destroy
+  	@spot.destroy
+  	redirect_to spots_path
+  end
+  
   private
   
   def spot_params
