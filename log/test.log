@@ -1167,3 +1167,795 @@ Processing by FavoritesController#create as HTML
 Redirected to http://test.host/spots
 Completed 302 Found in 6ms (ActiveRecord: 0.8ms)
   [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (6.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "favorites"[0m
+  [1m[35m (0.5ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (26.8ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:32:16.343516"], ["email", "sarah@gmail.com"], ["password_digest", "$2a$04$S2PgHEVKMyt8DfjXpkvaL.BGP5YYxZ.VQqWsDccvOHt4fbHjjCC4S"], ["updated_at", "2014-10-11 22:32:16.343516"], ["username", "sarah"]]
+  [1m[35m (0.6ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["address", "100 Fifth Avenue New York, NY 10003"], ["created_at", "2014-10-11 22:32:16.394927"], ["name", "Sarah's Bakery"], ["phone", "212-555-555"], ["price", 2], ["updated_at", "2014-10-11 22:32:16.394927"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 261]]
+  [1m[35mFavorite Exists (0.5ms)[0m  SELECT  1 AS one FROM "favorites"  WHERE "favorites"."user_id" = 261 LIMIT 1
+  [1m[36mSpot Load (0.3ms)[0m  [1mSELECT  "spots".* FROM "spots"  WHERE "spots"."id" = $1 LIMIT 1[0m  [["id", 200]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "favorites" ("created_at", "spot_id", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-10-11 22:32:16.425640"], ["spot_id", 200], ["updated_at", "2014-10-11 22:32:16.425640"], ["user_id", 261]]
+  [1m[36mSQL (12.1ms)[0m  [1mUPDATE "spots" SET "favorites_count" = COALESCE("favorites_count", 0) + 1 WHERE "spots"."id" = 200[0m
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by FavoritesController#create as HTML
+  Parameters: {"favorite"=>"14", "spot_id"=>"1"}
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mFavorite Exists (0.2ms)[0m  SELECT  1 AS one FROM "favorites"  WHERE "favorites"."user_id" IS NULL LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+Redirected to http://test.host/spots
+Completed 302 Found in 11ms (ActiveRecord: 0.6ms)
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "favorites"
+  [1m[36m (5.5ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", "2014-10-11 22:32:16.477087"], ["email", "sarah@gmail.com"], ["password_digest", "$2a$04$GsbE4Mgwj5fDrb4ZJNo2.eaNTn5.BuE3dQryXSyMvIPauEN8vMUsy"], ["updated_at", "2014-10-11 22:32:16.477087"], ["username", "sarah"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["address", "100 Fifth Avenue New York, NY 10003"], ["created_at", "2014-10-11 22:32:16.480528"], ["name", "Sarah's Bakery"], ["phone", "212-555-555"], ["price", 2], ["updated_at", "2014-10-11 22:32:16.480528"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by FavoritesController#create as HTML
+  Parameters: {"favorite"=>{"user_id"=>"262", "spot_id"=>"201"}, "spot_id"=>"1"}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mFavorite Exists (0.3ms)[0m  SELECT  1 AS one FROM "favorites"  WHERE "favorites"."user_id" IS NULL LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+Redirected to http://test.host/spots
+Completed 302 Found in 5ms (ActiveRecord: 0.6ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "favorites"
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["address", "100 Fifth Avenue New York, NY 10003"], ["created_at", "2014-10-11 22:32:16.496385"], ["name", "Sarah's Bakery"], ["phone", "212-555-555"], ["price", 2], ["updated_at", "2014-10-11 22:32:16.496385"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by FavoritesController#create as HTML
+  Parameters: {"favorite"=>{"user_id"=>nil, "spot_id"=>"202"}, "spot_id"=>"1"}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mFavorite Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "favorites"  WHERE "favorites"."user_id" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+Redirected to http://test.host/spots
+Completed 302 Found in 3ms (ActiveRecord: 0.5ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "favorites"[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:32:16.510470"], ["email", "sarah@gmail.com"], ["password_digest", "$2a$04$TOaj4Ord8o/xG8QyAeeaP.r15XwzVlz4i0YNJeQIce2MKaUX7BIB6"], ["updated_at", "2014-10-11 22:32:16.510470"], ["username", "sarah"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["address", "100 Fifth Avenue New York, NY 10003"], ["created_at", "2014-10-11 22:32:16.513275"], ["name", "Sarah's Bakery"], ["phone", "212-555-555"], ["price", 2], ["updated_at", "2014-10-11 22:32:16.513275"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by FavoritesController#create as HTML
+  Parameters: {"favorite"=>{"user_id"=>"263", "spot_id"=>"203"}, "spot_id"=>"1"}
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mFavorite Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "favorites"  WHERE "favorites"."user_id" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+Redirected to http://test.host/spots
+Completed 302 Found in 3ms (ActiveRecord: 0.6ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by SessionsController#new as HTML
+Completed 200 OK in 12ms (Views: 11.5ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by SpotsController#index as HTML
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by SpotsController#index as HTML
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+Processing by SpotsController#new as HTML
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by SpotsController#new as HTML
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "spots"[0m
+Processing by SpotsController#create as HTML
+  Parameters: {"spot"=>{"name"=>"Cookie's Cookies", "address"=>"48 Wall Street New York NY 10003", "phone"=>"212-456-1234", "price"=>"4"}}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["address", "48 Wall Street New York NY 10003"], ["created_at", "2014-10-11 22:32:16.626444"], ["name", "Cookie's Cookies"], ["phone", "212-456-1234"], ["price", 4], ["updated_at", "2014-10-11 22:32:16.626444"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/spots/204
+Completed 302 Found in 3ms (ActiveRecord: 0.6ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "spots"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+Processing by SpotsController#create as HTML
+  Parameters: {"spot"=>{"name"=>"Cookie's Cookies", "address"=>"48 Wall Street New York NY 10003", "phone"=>"212-456-1234", "price"=>"4"}}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["address", "48 Wall Street New York NY 10003"], ["created_at", "2014-10-11 22:32:16.633744"], ["name", "Cookie's Cookies"], ["phone", "212-456-1234"], ["price", 4], ["updated_at", "2014-10-11 22:32:16.633744"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/spots/205
+Completed 302 Found in 3ms (ActiveRecord: 0.5ms)
+  [1m[36mSpot Load (6.3ms)[0m  [1mSELECT  "spots".* FROM "spots"   ORDER BY "spots"."id" DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:32:16.651447"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$3P5PsdN1E3uWPpRYvrCYmOwYjZxcaq/tG3PUH7AT/KPBuvOUyJotC"], ["updated_at", "2014-10-11 22:32:16.651447"], ["username", "polly123"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["address", "100 Fifth Avenue New York, NY 10003"], ["created_at", "2014-10-11 22:32:16.653993"], ["name", "Sarah's Bakery"], ["phone", "212-555-555"], ["price", 2], ["updated_at", "2014-10-11 22:32:16.653993"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SpotsController#show as HTML
+  Parameters: {"id"=>"206"}
+  [1m[35mSpot Load (0.3ms)[0m  SELECT  "spots".* FROM "spots"  WHERE "spots"."id" = $1 LIMIT 1  [["id", 206]]
+Completed 200 OK in 3ms (Views: 1.4ms | ActiveRecord: 0.3ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", "2014-10-11 22:32:16.664198"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$mY6nprxo.0nexWUPZypLwOC8cU3rCjqM1zQYYVEp83ro0ExYg8/re"], ["updated_at", "2014-10-11 22:32:16.664198"], ["username", "polly123"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["address", "100 Fifth Avenue New York, NY 10003"], ["created_at", "2014-10-11 22:32:16.666853"], ["name", "Sarah's Bakery"], ["phone", "212-555-555"], ["price", 2], ["updated_at", "2014-10-11 22:32:16.666853"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SpotsController#show as HTML
+  Parameters: {"id"=>"207"}
+  [1m[36mSpot Load (0.3ms)[0m  [1mSELECT  "spots".* FROM "spots"  WHERE "spots"."id" = $1 LIMIT 1[0m  [["id", 207]]
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["address", "100 Ninth Avenue New York, NY 10013"], ["created_at", "2014-10-11 22:32:16.675003"], ["name", "Rafael's Bakery"], ["phone", "212-999-9555"], ["price", 4], ["updated_at", "2014-10-11 22:32:16.675003"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SpotsController#edit as HTML
+  Parameters: {"id"=>"208"}
+  [1m[36mSpot Load (0.3ms)[0m  [1mSELECT  "spots".* FROM "spots"  WHERE "spots"."id" = $1 LIMIT 1[0m  [["id", 208]]
+Completed 200 OK in 4ms (Views: 2.1ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["address", "100 Ninth Avenue New York, NY 10013"], ["created_at", "2014-10-11 22:32:16.685215"], ["name", "Rafael's Bakery"], ["phone", "212-999-9555"], ["price", 4], ["updated_at", "2014-10-11 22:32:16.685215"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SpotsController#edit as HTML
+  Parameters: {"id"=>"209"}
+  [1m[36mSpot Load (0.3ms)[0m  [1mSELECT  "spots".* FROM "spots"  WHERE "spots"."id" = $1 LIMIT 1[0m  [["id", 209]]
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["address", "100 Ninth Avenue New York, NY 10013"], ["created_at", "2014-10-11 22:32:16.693204"], ["name", "Rafael's Bakery"], ["phone", "212-999-9555"], ["price", 4], ["updated_at", "2014-10-11 22:32:16.693204"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SpotsController#update as HTML
+  Parameters: {"spot"=>{"name"=>"Rafa's"}, "id"=>"210"}
+  [1m[36mSpot Load (0.3ms)[0m  [1mSELECT  "spots".* FROM "spots"  WHERE "spots"."id" = $1 LIMIT 1[0m  [["id", 210]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "spots" SET "name" = $1, "updated_at" = $2 WHERE "spots"."id" = 210[0m  [["name", "Rafa's"], ["updated_at", "2014-10-11 22:32:16.698526"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/spots/210
+Completed 302 Found in 5ms (ActiveRecord: 0.8ms)
+  [1m[36mSpot Load (0.3ms)[0m  [1mSELECT  "spots".* FROM "spots"  WHERE "spots"."id" = $1 LIMIT 1[0m  [["id", 210]]
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["address", "100 Ninth Avenue New York, NY 10013"], ["created_at", "2014-10-11 22:32:16.706045"], ["name", "Rafael's Bakery"], ["phone", "212-999-9555"], ["price", 4], ["updated_at", "2014-10-11 22:32:16.706045"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SpotsController#update as HTML
+  Parameters: {"spot"=>{"name"=>"Rafa's"}, "id"=>"211"}
+  [1m[36mSpot Load (0.2ms)[0m  [1mSELECT  "spots".* FROM "spots"  WHERE "spots"."id" = $1 LIMIT 1[0m  [["id", 211]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "spots" SET "name" = $1, "updated_at" = $2 WHERE "spots"."id" = 211[0m  [["name", "Rafa's"], ["updated_at", "2014-10-11 22:32:16.711873"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/spots/211
+Completed 302 Found in 4ms (ActiveRecord: 0.7ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["address", "100 Ninth Avenue New York, NY 10013"], ["created_at", "2014-10-11 22:32:16.718244"], ["name", "Rafael's Bakery"], ["phone", "212-999-9555"], ["price", 4], ["updated_at", "2014-10-11 22:32:16.718244"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SpotsController#destroy as HTML
+  Parameters: {"id"=>"212"}
+  [1m[35mSpot Load (0.2ms)[0m  SELECT  "spots".* FROM "spots"  WHERE "spots"."id" = $1 LIMIT 1  [["id", 212]]
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "spots" WHERE "spots"."id" = $1  [["id", 212]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/spots
+Completed 302 Found in 3ms (ActiveRecord: 0.6ms)
+  [1m[35mSpot Load (0.3ms)[0m  SELECT "spots".* FROM "spots"
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["address", "100 Ninth Avenue New York, NY 10013"], ["created_at", "2014-10-11 22:32:16.729050"], ["name", "Rafael's Bakery"], ["phone", "212-999-9555"], ["price", 4], ["updated_at", "2014-10-11 22:32:16.729050"]]
+  [1m[36m (2.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SpotsController#destroy as HTML
+  Parameters: {"id"=>"213"}
+  [1m[35mSpot Load (0.2ms)[0m  SELECT  "spots".* FROM "spots"  WHERE "spots"."id" = $1 LIMIT 1  [["id", 213]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "spots" WHERE "spots"."id" = $1  [["id", 213]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/spots
+Completed 302 Found in 4ms (ActiveRecord: 0.8ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+Processing by UsersController#new as HTML
+Completed 200 OK in 4ms (Views: 3.0ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+Processing by UsersController#new as HTML
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.5ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "users"
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"polly123", "email"=>"polly@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", "2014-10-11 22:32:16.796684"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$XlGoEyO6ks6Et2PR7BJ04u9v1.ND2gGWGPufFLF/aFB3sSPgztmNi"], ["updated_at", "2014-10-11 22:32:16.796684"], ["username", "polly123"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/login
+Completed 302 Found in 6ms (ActiveRecord: 0.7ms)
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"polly123", "email"=>"polly@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", "2014-10-11 22:32:16.807763"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$Mm/DlByUrU4spYmxK5..qeKT//QcEMFwKxUahPjIPx0XwcKFAZgW6"], ["updated_at", "2014-10-11 22:32:16.807763"], ["username", "polly123"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/login
+Completed 302 Found in 5ms (ActiveRecord: 0.5ms)
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"mollypolly", "email"=>nil, "password"=>"[FILTERED]", "password_confimation"=>"[FILTERED]"}}
+Unpermitted parameters: password_confimation
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+Redirected to http://test.host/users/new
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:32:16.822809"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$VAx6JT7N0FftzaLqo0t7ROmyBqvAhCSkm7Tk2b2V/6IFyxOUxqg42"], ["updated_at", "2014-10-11 22:32:16.822809"], ["username", "polly123"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"268"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 268]]
+Completed 500 Internal Server Error in 6ms
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:32:16.836724"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$beJ9qnvh8sU3pSHlUiZvLeghUNlwQHOLngllCdXGAlyBN/6sbY8k2"], ["updated_at", "2014-10-11 22:32:16.836724"], ["username", "polly123"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"269"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 269]]
+Completed 500 Internal Server Error in 2ms
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:32:16.845879"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$VRr6PtcoQTn5tlARw8qIZeochctTs94kZIhnQNAPZr0QU0Z6Kpmmy"], ["updated_at", "2014-10-11 22:32:16.845879"], ["username", "polly123"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"270"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 270]]
+Completed 200 OK in 4ms (Views: 2.1ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:32:16.857098"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$AW5E/dphaef/qJ3phVjqY.zlsJ4s43OrL8e8htVDW2P8kcZN2M4.6"], ["updated_at", "2014-10-11 22:32:16.857098"], ["username", "polly123"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"271"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 271]]
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:32:16.867064"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$fR4BupryyB4k0pymEaE00etGln7cqFdJd55ZNKGpqfRLUMLzz.4Cu"], ["updated_at", "2014-10-11 22:32:16.867064"], ["username", "polly123"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by UsersController#update as HTML
+  Parameters: {"user"=>{"email"=>"molly@gmail.com"}, "id"=>"272"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 272]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "users" SET "email" = $1, "updated_at" = $2 WHERE "users"."id" = 272[0m  [["email", "molly@gmail.com"], ["updated_at", "2014-10-11 22:32:16.872842"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/users/272
+Completed 302 Found in 4ms (ActiveRecord: 0.8ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 272]]
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:32:16.880858"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$Om7gay7P674HG48baxKTZO7opH1mvYbrRf7KA43q7/9a2RLVgJ6Iy"], ["updated_at", "2014-10-11 22:32:16.880858"], ["username", "polly123"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by UsersController#update as HTML
+  Parameters: {"user"=>{"email"=>"molly@gmail.com"}, "id"=>"273"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 273]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE "users" SET "email" = $1, "updated_at" = $2 WHERE "users"."id" = 273[0m  [["email", "molly@gmail.com"], ["updated_at", "2014-10-11 22:32:16.886338"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/users/273
+Completed 302 Found in 4ms (ActiveRecord: 0.9ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 273]]
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:32:16.894325"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$tlwn4kmRKSiIEq6oEpMhO.wi.SVmbe9tnxvM7ir2tFVIuHPFogS6G"], ["updated_at", "2014-10-11 22:32:16.894325"], ["username", "polly123"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by UsersController#update as HTML
+  Parameters: {"user"=>{"email"=>"@gmail.com", "username"=>""}, "id"=>"274"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 274]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+Redirected to http://test.host/users/274/edit
+Completed 302 Found in 3ms (ActiveRecord: 0.4ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:32:16.906300"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$.UYAntaR9lINXZ2ZTYbdM.RaXEO.0CVH0.Gn/V6KasCk.X0yzPCia"], ["updated_at", "2014-10-11 22:32:16.906300"], ["username", "polly123"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by UsersController#destroy as HTML
+  Parameters: {"id"=>"275"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 275]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 275]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/spots
+Completed 302 Found in 3ms (ActiveRecord: 0.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:32:16.917928"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$ffw9qGJ4MxBFHr5qW.ASm.UO/rrACDan1z6VZNd6ENt6.nKJvTha."], ["updated_at", "2014-10-11 22:32:16.917928"], ["username", "polly123"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by UsersController#destroy as HTML
+  Parameters: {"id"=>"276"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 276]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 276]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/spots
+Completed 302 Found in 3ms (ActiveRecord: 0.6ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["address", "100 Fifth Avenue New York, NY 10003"], ["created_at", "2014-10-11 22:32:16.927848"], ["name", "Sarah's Bakery"], ["phone", "212-555-555"], ["price", 2], ["updated_at", "2014-10-11 22:32:16.927848"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:32:16.944623"], ["email", "sarah@gmail.com"], ["password_digest", "$2a$04$e0C2r.ENz5VoNya/41foG.YcOl3QXNj/Zmp3YjoRzZtaQV7HoE5f."], ["updated_at", "2014-10-11 22:32:16.944623"], ["username", "sarah"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", "2014-10-11 22:32:16.951661"], ["email", "sarah@gmail.com"], ["password_digest", "$2a$04$jpuEvHxoYWqF/dIHZfHnw.5GVJtPVKQwWQzqqb05rg98TC3gm6gVy"], ["updated_at", "2014-10-11 22:32:16.951661"], ["username", "sarah"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["address", "100 Fifth Avenue New York, NY 10003"], ["created_at", "2014-10-11 22:32:16.953617"], ["name", "Sarah's Bakery"], ["phone", "212-555-555"], ["price", 2], ["updated_at", "2014-10-11 22:32:16.953617"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", "2014-10-11 22:32:16.958837"], ["email", "sarah@gmail.com"], ["password_digest", "$2a$04$wmedYsQn9wwiQx5xxe1vMOg/aAiTyK4Nn6.2r/b7mokBVBBn0SbGS"], ["updated_at", "2014-10-11 22:32:16.958837"], ["username", "sarah"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["address", "100 Fifth Avenue New York, NY 10003"], ["created_at", "2014-10-11 22:32:16.960848"], ["name", "Sarah's Bakery"], ["phone", "212-555-555"], ["price", 2], ["updated_at", "2014-10-11 22:32:16.960848"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (8.2ms)[0m  INSERT INTO "comments" ("body", "created_at", "spot_id", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["body", "Best cookies ever!"], ["created_at", "2014-10-11 22:32:16.962665"], ["spot_id", 216], ["updated_at", "2014-10-11 22:32:16.962665"], ["user_id", 279]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mFavorite Exists (0.2ms)[0m  SELECT  1 AS one FROM "favorites"  WHERE "favorites"."user_id" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mFavorite Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "favorites"  WHERE "favorites"."user_id" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:32:16.982482"], ["email", "sarah@gmail.com"], ["password_digest", "$2a$04$i.Kujfr0IW8k0Qh6WfgCTuOwPnnKdNSZL77ERwJm1h.I8MLigpHWq"], ["updated_at", "2014-10-11 22:32:16.982482"], ["username", "sarah"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["address", "100 Fifth Avenue New York, NY 10003"], ["created_at", "2014-10-11 22:32:16.984984"], ["name", "Sarah's Bakery"], ["phone", "212-555-555"], ["price", 2], ["updated_at", "2014-10-11 22:32:16.984984"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 280]]
+  [1m[36mFavorite Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "favorites"  WHERE "favorites"."user_id" = 280 LIMIT 1[0m
+  [1m[35mSpot Load (0.2ms)[0m  SELECT  "spots".* FROM "spots"  WHERE "spots"."id" = $1 LIMIT 1  [["id", 217]]
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "favorites"[0m
+  [1m[35m (0.3ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:33:35.453689"], ["email", "sarah@gmail.com"], ["password_digest", "$2a$04$sbg32gN8J2HCbs.ksTyMIO8JrzmVanehrUuVhX7tPRwfxDt0yw2We"], ["updated_at", "2014-10-11 22:33:35.453689"], ["username", "sarah"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["address", "100 Fifth Avenue New York, NY 10003"], ["created_at", "2014-10-11 22:33:35.468714"], ["name", "Sarah's Bakery"], ["phone", "212-555-555"], ["price", 2], ["updated_at", "2014-10-11 22:33:35.468714"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 281]]
+  [1m[35mFavorite Exists (0.4ms)[0m  SELECT  1 AS one FROM "favorites"  WHERE "favorites"."user_id" = 281 LIMIT 1
+  [1m[36mSpot Load (0.4ms)[0m  [1mSELECT  "spots".* FROM "spots"  WHERE "spots"."id" = $1 LIMIT 1[0m  [["id", 218]]
+  [1m[35mSQL (6.2ms)[0m  INSERT INTO "favorites" ("created_at", "spot_id", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-10-11 22:33:35.497827"], ["spot_id", 218], ["updated_at", "2014-10-11 22:33:35.497827"], ["user_id", 281]]
+  [1m[36mSQL (0.9ms)[0m  [1mUPDATE "spots" SET "favorites_count" = COALESCE("favorites_count", 0) + 1 WHERE "spots"."id" = 218[0m
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by FavoritesController#create as HTML
+  Parameters: {"favorite"=>"15", "spot_id"=>"1"}
+  [1m[36m (0.3ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mFavorite Exists (0.3ms)[0m  SELECT  1 AS one FROM "favorites"  WHERE "favorites"."user_id" IS NULL LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+Redirected to http://test.host/spots
+Completed 302 Found in 18ms (ActiveRecord: 0.8ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "favorites"
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", "2014-10-11 22:33:35.543782"], ["email", "sarah@gmail.com"], ["password_digest", "$2a$04$b62vEuGmcaDyrWIqq1jbRuB07uYHE1m4Wcc43MznmdwSTp1/MTqMC"], ["updated_at", "2014-10-11 22:33:35.543782"], ["username", "sarah"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["address", "100 Fifth Avenue New York, NY 10003"], ["created_at", "2014-10-11 22:33:35.546049"], ["name", "Sarah's Bakery"], ["phone", "212-555-555"], ["price", 2], ["updated_at", "2014-10-11 22:33:35.546049"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by FavoritesController#create as HTML
+  Parameters: {"favorite"=>{"user_id"=>"282", "spot_id"=>"219"}, "spot_id"=>"1"}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mFavorite Exists (0.2ms)[0m  SELECT  1 AS one FROM "favorites"  WHERE "favorites"."user_id" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+Redirected to http://test.host/spots
+Completed 302 Found in 3ms (ActiveRecord: 0.5ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "favorites"
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["address", "100 Fifth Avenue New York, NY 10003"], ["created_at", "2014-10-11 22:33:35.557590"], ["name", "Sarah's Bakery"], ["phone", "212-555-555"], ["price", 2], ["updated_at", "2014-10-11 22:33:35.557590"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by FavoritesController#create as HTML
+  Parameters: {"favorite"=>{"user_id"=>nil, "spot_id"=>"220"}, "spot_id"=>"1"}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mFavorite Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "favorites"  WHERE "favorites"."user_id" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+Redirected to http://test.host/spots
+Completed 302 Found in 3ms (ActiveRecord: 0.5ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "favorites"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:33:35.570456"], ["email", "sarah@gmail.com"], ["password_digest", "$2a$04$eN87iCehNWWeTUyN.jioReKFoitC/ZkDBhqd48pgmHocHBQoL61py"], ["updated_at", "2014-10-11 22:33:35.570456"], ["username", "sarah"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["address", "100 Fifth Avenue New York, NY 10003"], ["created_at", "2014-10-11 22:33:35.572928"], ["name", "Sarah's Bakery"], ["phone", "212-555-555"], ["price", 2], ["updated_at", "2014-10-11 22:33:35.572928"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by FavoritesController#create as HTML
+  Parameters: {"favorite"=>{"user_id"=>"283", "spot_id"=>"221"}, "spot_id"=>"1"}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mFavorite Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "favorites"  WHERE "favorites"."user_id" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+Redirected to http://test.host/spots
+Completed 302 Found in 4ms (ActiveRecord: 0.6ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by SessionsController#new as HTML
+Completed 200 OK in 10ms (Views: 9.6ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by SpotsController#index as HTML
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by SpotsController#index as HTML
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by SpotsController#new as HTML
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by SpotsController#new as HTML
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "spots"[0m
+Processing by SpotsController#create as HTML
+  Parameters: {"spot"=>{"name"=>"Cookie's Cookies", "address"=>"48 Wall Street New York NY 10003", "phone"=>"212-456-1234", "price"=>"4"}}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["address", "48 Wall Street New York NY 10003"], ["created_at", "2014-10-11 22:33:35.680129"], ["name", "Cookie's Cookies"], ["phone", "212-456-1234"], ["price", 4], ["updated_at", "2014-10-11 22:33:35.680129"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/spots/222
+Completed 302 Found in 3ms (ActiveRecord: 0.5ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "spots"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+Processing by SpotsController#create as HTML
+  Parameters: {"spot"=>{"name"=>"Cookie's Cookies", "address"=>"48 Wall Street New York NY 10003", "phone"=>"212-456-1234", "price"=>"4"}}
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["address", "48 Wall Street New York NY 10003"], ["created_at", "2014-10-11 22:33:35.688137"], ["name", "Cookie's Cookies"], ["phone", "212-456-1234"], ["price", 4], ["updated_at", "2014-10-11 22:33:35.688137"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/spots/223
+Completed 302 Found in 3ms (ActiveRecord: 0.5ms)
+  [1m[36mSpot Load (0.5ms)[0m  [1mSELECT  "spots".* FROM "spots"   ORDER BY "spots"."id" DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:33:35.696789"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$kQsrk77drFjq8Kxdt4xuy.8tmcPlT6Y4TouWsKtcGbqNiSdL5uJvq"], ["updated_at", "2014-10-11 22:33:35.696789"], ["username", "polly123"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["address", "100 Fifth Avenue New York, NY 10003"], ["created_at", "2014-10-11 22:33:35.699218"], ["name", "Sarah's Bakery"], ["phone", "212-555-555"], ["price", 2], ["updated_at", "2014-10-11 22:33:35.699218"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SpotsController#show as HTML
+  Parameters: {"id"=>"224"}
+  [1m[35mSpot Load (0.3ms)[0m  SELECT  "spots".* FROM "spots"  WHERE "spots"."id" = $1 LIMIT 1  [["id", 224]]
+Completed 200 OK in 3ms (Views: 1.4ms | ActiveRecord: 0.3ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", "2014-10-11 22:33:35.710024"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$EYM6tvH6IkRURMEBarAeYOdsV/L0c/1HdoA6WzV4MqgbHyXFZxMge"], ["updated_at", "2014-10-11 22:33:35.710024"], ["username", "polly123"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["address", "100 Fifth Avenue New York, NY 10003"], ["created_at", "2014-10-11 22:33:35.712013"], ["name", "Sarah's Bakery"], ["phone", "212-555-555"], ["price", 2], ["updated_at", "2014-10-11 22:33:35.712013"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SpotsController#show as HTML
+  Parameters: {"id"=>"225"}
+  [1m[36mSpot Load (0.3ms)[0m  [1mSELECT  "spots".* FROM "spots"  WHERE "spots"."id" = $1 LIMIT 1[0m  [["id", 225]]
+Completed 200 OK in 3ms (Views: 1.2ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["address", "100 Ninth Avenue New York, NY 10013"], ["created_at", "2014-10-11 22:33:35.723376"], ["name", "Rafael's Bakery"], ["phone", "212-999-9555"], ["price", 4], ["updated_at", "2014-10-11 22:33:35.723376"]]
+  [1m[35m (0.3ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SpotsController#edit as HTML
+  Parameters: {"id"=>"226"}
+  [1m[36mSpot Load (0.8ms)[0m  [1mSELECT  "spots".* FROM "spots"  WHERE "spots"."id" = $1 LIMIT 1[0m  [["id", 226]]
+Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 0.8ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["address", "100 Ninth Avenue New York, NY 10013"], ["created_at", "2014-10-11 22:33:35.746369"], ["name", "Rafael's Bakery"], ["phone", "212-999-9555"], ["price", 4], ["updated_at", "2014-10-11 22:33:35.746369"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SpotsController#edit as HTML
+  Parameters: {"id"=>"227"}
+  [1m[36mSpot Load (0.3ms)[0m  [1mSELECT  "spots".* FROM "spots"  WHERE "spots"."id" = $1 LIMIT 1[0m  [["id", 227]]
+Completed 200 OK in 3ms (Views: 1.3ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["address", "100 Ninth Avenue New York, NY 10013"], ["created_at", "2014-10-11 22:33:35.755665"], ["name", "Rafael's Bakery"], ["phone", "212-999-9555"], ["price", 4], ["updated_at", "2014-10-11 22:33:35.755665"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SpotsController#update as HTML
+  Parameters: {"spot"=>{"name"=>"Rafa's"}, "id"=>"228"}
+  [1m[36mSpot Load (0.2ms)[0m  [1mSELECT  "spots".* FROM "spots"  WHERE "spots"."id" = $1 LIMIT 1[0m  [["id", 228]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "spots" SET "name" = $1, "updated_at" = $2 WHERE "spots"."id" = 228[0m  [["name", "Rafa's"], ["updated_at", "2014-10-11 22:33:35.760605"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/spots/228
+Completed 302 Found in 4ms (ActiveRecord: 0.7ms)
+  [1m[36mSpot Load (0.2ms)[0m  [1mSELECT  "spots".* FROM "spots"  WHERE "spots"."id" = $1 LIMIT 1[0m  [["id", 228]]
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["address", "100 Ninth Avenue New York, NY 10013"], ["created_at", "2014-10-11 22:33:35.767586"], ["name", "Rafael's Bakery"], ["phone", "212-999-9555"], ["price", 4], ["updated_at", "2014-10-11 22:33:35.767586"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SpotsController#update as HTML
+  Parameters: {"spot"=>{"name"=>"Rafa's"}, "id"=>"229"}
+  [1m[36mSpot Load (0.2ms)[0m  [1mSELECT  "spots".* FROM "spots"  WHERE "spots"."id" = $1 LIMIT 1[0m  [["id", 229]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "spots" SET "name" = $1, "updated_at" = $2 WHERE "spots"."id" = 229[0m  [["name", "Rafa's"], ["updated_at", "2014-10-11 22:33:35.772845"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/spots/229
+Completed 302 Found in 4ms (ActiveRecord: 0.8ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["address", "100 Ninth Avenue New York, NY 10013"], ["created_at", "2014-10-11 22:33:35.778425"], ["name", "Rafael's Bakery"], ["phone", "212-999-9555"], ["price", 4], ["updated_at", "2014-10-11 22:33:35.778425"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SpotsController#destroy as HTML
+  Parameters: {"id"=>"230"}
+  [1m[35mSpot Load (0.2ms)[0m  SELECT  "spots".* FROM "spots"  WHERE "spots"."id" = $1 LIMIT 1  [["id", 230]]
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "spots" WHERE "spots"."id" = $1  [["id", 230]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/spots
+Completed 302 Found in 3ms (ActiveRecord: 0.8ms)
+  [1m[35mSpot Load (0.3ms)[0m  SELECT "spots".* FROM "spots"
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["address", "100 Ninth Avenue New York, NY 10013"], ["created_at", "2014-10-11 22:33:35.791970"], ["name", "Rafael's Bakery"], ["phone", "212-999-9555"], ["price", 4], ["updated_at", "2014-10-11 22:33:35.791970"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SpotsController#destroy as HTML
+  Parameters: {"id"=>"231"}
+  [1m[35mSpot Load (0.2ms)[0m  SELECT  "spots".* FROM "spots"  WHERE "spots"."id" = $1 LIMIT 1  [["id", 231]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "spots" WHERE "spots"."id" = $1  [["id", 231]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/spots
+Completed 302 Found in 3ms (ActiveRecord: 0.6ms)
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+Processing by UsersController#new as HTML
+Completed 200 OK in 3ms (Views: 2.8ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+Processing by UsersController#new as HTML
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "users"
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"polly123", "email"=>"polly@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", "2014-10-11 22:33:35.819905"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$QxWpX6Gxf8zQn6UdAIrdIuSymFM0ngKIZv2iTOvnQqytWAZtpytVa"], ["updated_at", "2014-10-11 22:33:35.819905"], ["username", "polly123"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/login
+Completed 302 Found in 5ms (ActiveRecord: 0.5ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"polly123", "email"=>"polly@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", "2014-10-11 22:33:35.829372"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$FglANGMbHPBTbugmyQCOhOibpspTSfTSRSFvXXC.IB2Ouzay8WNT2"], ["updated_at", "2014-10-11 22:33:35.829372"], ["username", "polly123"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/login
+Completed 302 Found in 5ms (ActiveRecord: 0.4ms)
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"mollypolly", "email"=>nil, "password"=>"[FILTERED]", "password_confimation"=>"[FILTERED]"}}
+Unpermitted parameters: password_confimation
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+Redirected to http://test.host/users/new
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:33:35.845254"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$7UQr8A.pc47.zbEu0MiEIea3BC3GGnhuKaFsC/bK/O3Iz/8PoNT/K"], ["updated_at", "2014-10-11 22:33:35.845254"], ["username", "polly123"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"288"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 288]]
+Completed 200 OK in 3ms (Views: 1.3ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:33:35.855099"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$6gQbnErlspoL/F6r79xVEOMaTSR.NdoLxvDZhf5F28JD5S7jXzttS"], ["updated_at", "2014-10-11 22:33:35.855099"], ["username", "polly123"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"289"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 289]]
+Completed 200 OK in 2ms (Views: 1.0ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:33:35.865257"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$VLqe5NzMr6ecc2ybeYfct.NyEiR0s9.9iLDa79XTln1kcD6yXUHZO"], ["updated_at", "2014-10-11 22:33:35.865257"], ["username", "polly123"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"290"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 290]]
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:33:35.877470"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$BLeMa1sKs5Ow.hwOHacIxO4HbfucfdA6LCjrYdb5y6mKnjTTODrCi"], ["updated_at", "2014-10-11 22:33:35.877470"], ["username", "polly123"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"291"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 291]]
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:33:35.887786"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$xeR7nPvsNxyfkFOE0kbs9eWyEnKnjvBmtfbZmFXqACV2hzue4xmrS"], ["updated_at", "2014-10-11 22:33:35.887786"], ["username", "polly123"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by UsersController#update as HTML
+  Parameters: {"user"=>{"email"=>"molly@gmail.com"}, "id"=>"292"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 292]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "users" SET "email" = $1, "updated_at" = $2 WHERE "users"."id" = 292[0m  [["email", "molly@gmail.com"], ["updated_at", "2014-10-11 22:33:35.893160"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/users/292
+Completed 302 Found in 4ms (ActiveRecord: 0.7ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 292]]
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:33:35.900767"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$Lh2qk58lz.XJsqzgXXNU/uKDrDqervozknHKcNLoUiF4yoNUTwORy"], ["updated_at", "2014-10-11 22:33:35.900767"], ["username", "polly123"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by UsersController#update as HTML
+  Parameters: {"user"=>{"email"=>"molly@gmail.com"}, "id"=>"293"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 293]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "users" SET "email" = $1, "updated_at" = $2 WHERE "users"."id" = 293[0m  [["email", "molly@gmail.com"], ["updated_at", "2014-10-11 22:33:35.905938"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/users/293
+Completed 302 Found in 4ms (ActiveRecord: 0.8ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 293]]
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:33:35.913638"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$w9gmVk5wolYT21QwzEkOxeHDM2OCezDDdHnenOQBpD0iV7LEuFvw2"], ["updated_at", "2014-10-11 22:33:35.913638"], ["username", "polly123"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by UsersController#update as HTML
+  Parameters: {"user"=>{"email"=>"@gmail.com", "username"=>""}, "id"=>"294"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 294]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+Redirected to http://test.host/users/294/edit
+Completed 302 Found in 4ms (ActiveRecord: 0.6ms)
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:33:35.924914"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$fXsJ4jortKEGb7x5c.qgtOUyghtk4OVsvVmeQHxgGJaxjwLj18fpC"], ["updated_at", "2014-10-11 22:33:35.924914"], ["username", "polly123"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by UsersController#destroy as HTML
+  Parameters: {"id"=>"295"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 295]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 295]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/spots
+Completed 302 Found in 3ms (ActiveRecord: 0.7ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:33:35.936353"], ["email", "polly@gmail.com"], ["password_digest", "$2a$04$X1I9.XsVwoerAYm5hLx1lOxa3C0muRMgYkh.L5g9cyyNtFrF/LGRC"], ["updated_at", "2014-10-11 22:33:35.936353"], ["username", "polly123"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by UsersController#destroy as HTML
+  Parameters: {"id"=>"296"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 296]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 296]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/spots
+Completed 302 Found in 2ms (ActiveRecord: 0.7ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["address", "100 Fifth Avenue New York, NY 10003"], ["created_at", "2014-10-11 22:33:35.944548"], ["name", "Sarah's Bakery"], ["phone", "212-555-555"], ["price", 2], ["updated_at", "2014-10-11 22:33:35.944548"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:33:35.961311"], ["email", "sarah@gmail.com"], ["password_digest", "$2a$04$ShbhS5Lf0wZJp6NmQe5vwej1z/D0a/LvYkJ1BzAle7Upuu8rl9Jsi"], ["updated_at", "2014-10-11 22:33:35.961311"], ["username", "sarah"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", "2014-10-11 22:33:35.969661"], ["email", "sarah@gmail.com"], ["password_digest", "$2a$04$Ch6ew.d5jAah5j3fn4WXdeMrLM7CrYVL/aD7s7HDx.Rl3LKBGKSZG"], ["updated_at", "2014-10-11 22:33:35.969661"], ["username", "sarah"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["address", "100 Fifth Avenue New York, NY 10003"], ["created_at", "2014-10-11 22:33:35.971606"], ["name", "Sarah's Bakery"], ["phone", "212-555-555"], ["price", 2], ["updated_at", "2014-10-11 22:33:35.971606"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", "2014-10-11 22:33:35.978153"], ["email", "sarah@gmail.com"], ["password_digest", "$2a$04$VNGSjDwOZU7zuluZYs5UnOTRrD0vpC04alhiNtr0MN4g98lvu4LWa"], ["updated_at", "2014-10-11 22:33:35.978153"], ["username", "sarah"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["address", "100 Fifth Avenue New York, NY 10003"], ["created_at", "2014-10-11 22:33:35.980107"], ["name", "Sarah's Bakery"], ["phone", "212-555-555"], ["price", 2], ["updated_at", "2014-10-11 22:33:35.980107"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "comments" ("body", "created_at", "spot_id", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["body", "Best cookies ever!"], ["created_at", "2014-10-11 22:33:35.981889"], ["spot_id", 234], ["updated_at", "2014-10-11 22:33:35.981889"], ["user_id", 299]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mFavorite Exists (0.2ms)[0m  SELECT  1 AS one FROM "favorites"  WHERE "favorites"."user_id" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mFavorite Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "favorites"  WHERE "favorites"."user_id" IS NULL LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.5ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "password_digest", "updated_at", "username") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-10-11 22:33:35.992587"], ["email", "sarah@gmail.com"], ["password_digest", "$2a$04$2K3h4OmJRLdhktA0D6YZ3uJDzbUA9AS2hH6j/2Gz5rgvjAkRzvU02"], ["updated_at", "2014-10-11 22:33:35.992587"], ["username", "sarah"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "spots" ("address", "created_at", "name", "phone", "price", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["address", "100 Fifth Avenue New York, NY 10003"], ["created_at", "2014-10-11 22:33:35.995366"], ["name", "Sarah's Bakery"], ["phone", "212-555-555"], ["price", 2], ["updated_at", "2014-10-11 22:33:35.995366"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 300]]
+  [1m[36mFavorite Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "favorites"  WHERE "favorites"."user_id" = 300 LIMIT 1[0m
+  [1m[35mSpot Load (0.2ms)[0m  SELECT  "spots".* FROM "spots"  WHERE "spots"."id" = $1 LIMIT 1  [["id", 235]]
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
