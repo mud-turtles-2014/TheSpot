@@ -13,8 +13,9 @@ describe Favorite do
     expect(favorite.errors[:spot]).to include("can't be blank")
   end
   it "is valid with a user and a spot" do
-    @favorite = create(:favorite)
-    expect(@favorite).to be_valid
+    test_user = FactoryGirl.create(:user)
+    test_spot = FactoryGirl.create(:spot)
+    expect(Favorite.new(user_id: test_user.id, spot_id: test_spot.id)).to be_valid
   end
 
 end
