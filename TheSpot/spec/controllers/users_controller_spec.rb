@@ -35,4 +35,13 @@ describe UsersController do
       it "assigns a flash to notify user of error"
     end
   end
+
+  describe "#edit" do
+    it "assigns the user to @user" do
+      user = User.create!(username:"polly123", email:"polly@gmail.com",password:"password", password_confirmation: "password")
+      get :edit, id: user
+      expect(assigns(:user)).to eq user
+    end
+    it "renders the :edit template"
+  end
 end
