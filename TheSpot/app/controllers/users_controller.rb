@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :load_user, only: [:edit, :update, :destroy]
+  before_filter :load_user, only: [:edit, :update, :destroy, :show]
 
   def new
   	@user = User.new
@@ -14,6 +14,9 @@ class UsersController < ApplicationController
     else
       redirect_to new_user_path
     end
+  end
+
+  def show
   end
 
   def edit
