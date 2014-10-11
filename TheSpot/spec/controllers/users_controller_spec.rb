@@ -36,6 +36,20 @@ describe UsersController do
     end
   end
 
+  describe "#show" do
+    it "assigns the user to @user" do 
+      user = User.create!(username:"polly123", email:"polly@gmail.com",password:"password", password_confirmation: "password")
+      get :show, id: user
+      expect(assigns(:user)).to eq user
+    end
+
+    it "renders the show template" do 
+      user = User.create!(username:"polly123", email:"polly@gmail.com",password:"password", password_confirmation: "password")
+      get :show, id: user
+      expect(response).to render_template :show
+    end
+  end
+
   describe "#edit" do
     it "assigns the user to @user" do
       user = User.create!(username:"polly123", email:"polly@gmail.com",password:"password", password_confirmation: "password")
