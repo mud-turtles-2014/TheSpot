@@ -12,6 +12,11 @@ describe Favorite do
     favorite.valid?
     expect(favorite.errors[:spot]).to include("can't be blank")
   end
-  it "is valid with a user and a spot"
+  it "is valid with a user and a spot" do
+    user = User.first
+    spot = Spot.first
+    favorite = Favorite.new(user: user, spot: spot)
+    expect(favorite).to be_valid
+  end
 
 end
