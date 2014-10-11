@@ -26,9 +26,18 @@ describe SpotsController do
 
   describe "#create" do
     context "with valid attributes" do
-      it "saves the new spot to the database"
-      it "redirects to the #show page"
+      it "saves the new spot to the database" do
+       expect{
+          post :create, spot: {name: "Cookie's Cookies", address: "48 Wall Street New York NY 10003", phone: "212-456-1234", price: 4}
+        }.to change(Spot, :count).by(1)
+      end
+      it "redirects to the #show page" do 
+        post :create, spot: {name: "Cookie's Cookies", address: "48 Wall Street New York NY 10003", phone: "212-456-1234", price: 4}
+        spot = Spot.last
+        expect(response).to redirect_to spot_path(assigns[:spot])
+      end
     end
+
 
     context "with invalid attributes" do
       it "does not save the new spot to the database"
