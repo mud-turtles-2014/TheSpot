@@ -78,4 +78,17 @@ describe UsersController do
       end
   	end
   end
+
+  describe "#destroy" do 
+    it "deletes the user from the database" do
+      user = User.create!(username:"polly123", email:"polly@gmail.com",password:"password", password_confirmation: "password")
+      delete :destroy, id: user
+      expect(User.all).to_not include user
+    end
+    it "redirects to spots_path" do
+      user = User.create!(username:"polly123", email:"polly@gmail.com",password:"password", password_confirmation: "password")
+      delete :destroy, id: user
+      expect(response).to redirect_to spots_path
+    end
+  end
 end
