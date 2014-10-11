@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   resources :spots do
     resources :favorites, only: [:create]
   end
+
+  resources :spots do
+    resources :comments, only: [:create]
+  end
+
   delete '/logout' => 'sessions#destroy'
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
