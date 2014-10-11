@@ -58,12 +58,12 @@ describe UsersController do
         user.reload
         expect(user.email).to eq(new_email)
   	  end
-  	  it "renders the user#show" do
+  	  it "redirects the user#show" do
   	  	user = User.create!(username:"polly123", email:"polly@gmail.com",password:"password", password_confirmation: "password")
         new_email = "molly@gmail.com"
         put :update, id: user, user: {email: new_email}
         user.reload
-        expect(response).to render_template :show
+        expect(response).to redirect_to user_path(assigns[:user])
   	  end
   	end
 
