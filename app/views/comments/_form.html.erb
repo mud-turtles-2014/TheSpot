@@ -1,0 +1,4 @@
+<%= form_for [@spot, @comment]  do |f| %>
+  <%= f.text_area :body, :placeholder => "How is this spot?" %><br>
+  <%= f.submit %>
+<% end %>
