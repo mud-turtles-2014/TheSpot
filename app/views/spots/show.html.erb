@@ -14,6 +14,12 @@
 <%= show_photo(@spot.photo) if @spot.photo %>
 
 <%= button_to "Leave Comment", new_spot_comment_path(@spot), method: :get %>
+
+<%= form_for [@spot, Comment.new]  do |f| %>
+  <%= f.text_area :body, :placeholder => "How is this spot?" %><br>
+  <%= f.submit %>
+<% end %>
+
 <% @spot.comments.each do |comment| %>
-	<%= comment.body %><br>
+	<%= render partial:'inlinecomment', locals: {spot: @spot, comment: comment} %>
 <% end %>
