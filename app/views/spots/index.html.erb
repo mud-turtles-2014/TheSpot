@@ -1,6 +1,6 @@
 <ul>
   <% @spots.each do |spot| %>
-    <li><b><%= spot.name %></b></li>
+    <li><b><%= link_to spot.name, spot_path(spot) %></b></li>
     <li><%= spot.address %></li>
     <li><%= spot.phone %></li>
     <li><%= spot.website %></li>
