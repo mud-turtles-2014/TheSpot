@@ -5,7 +5,7 @@ describe SpotsController do
   describe "#index" do
     it "assigns all spots to @spots" do
       get :index
-      expect(assigns(:spots)).to eq Spot.all
+      expect(assigns(:spots)).to eq Spot.all.order(:favorites_count)
     end
     it "renders the #index template" do
       get :index
@@ -31,7 +31,7 @@ describe SpotsController do
           post :create, spot: {name: "Cookie's Cookies", address: "48 Wall Street New York NY 10003", phone: "212-456-1234", price: 4}
         }.to change(Spot, :count).by(1)
       end
-      it "redirects to the #show page" do 
+      it "redirects to the #show page" do
         post :create, spot: {name: "Cookie's Cookies", address: "48 Wall Street New York NY 10003", phone: "212-456-1234", price: 4}
         spot = Spot.last
         expect(response).to redirect_to spot_path(assigns[:spot])
@@ -47,7 +47,7 @@ describe SpotsController do
   end
 
   describe "#show" do
-    it "assigns the spot to @spot" do 
+    it "assigns the spot to @spot" do
       user = User.create!(username:"polly123", email:"polly@gmail.com",password:"password", password_confirmation: "password")
       spot = Spot.create!(name:"Sarah's Bakery", address:"100 Fifth Avenue New York, NY 10003", phone:"212-555-555", price: 2)
       get :show, id: spot
@@ -62,7 +62,7 @@ describe SpotsController do
   end
 
   describe "#edit" do
-    it "assigns the spot to @spot" do 
+    it "assigns the spot to @spot" do
       spot = Spot.create!(name:"Rafael's Bakery", address:"100 Ninth Avenue New York, NY 10013", phone:"212-999-9555", price: 4)
       get :edit, id: spot
       expect(assigns(:spot)).to eq spot
@@ -74,8 +74,8 @@ describe SpotsController do
     end
   end
 
-  describe "#update" do 
-  	context "with valid attributes" do 
+  describe "#update" do
+  	context "with valid attributes" do
   	  it "updates the database" do
         spot = Spot.create!(name:"Rafael's Bakery", address:"100 Ninth Avenue New York, NY 10013", phone:"212-999-9555", price: 4)
         new_name = "Rafa's"
@@ -91,19 +91,19 @@ describe SpotsController do
       end
   	end
 
-  	context "with invalid attributes" do 
+  	context "with invalid attributes" do
   	  it "does not update the database"
   	  it "redirects to spot#edit"
   	end
   end
 
-  describe "#destroy" do 
+  describe "#destroy" do
     it "deletes the spot from the database" do
       spot = Spot.create!(name:"Rafael's Bakery", address:"100 Ninth Avenue New York, NY 10013", phone:"212-999-9555", price: 4)
       delete :destroy, id: spot
       expect(Spot.all).to_not include spot
     end
-    it "redirects to spot index" do 
+    it "redirects to spot index" do
       spot = Spot.create!(name:"Rafael's Bakery", address:"100 Ninth Avenue New York, NY 10013", phone:"212-999-9555", price: 4)
       delete :destroy, id: spot
       expect(response).to redirect_to spots_path

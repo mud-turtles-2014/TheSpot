@@ -1,7 +1,12 @@
 class SpotsController < ApplicationController
   before_filter :load_spot, only: [:show, :edit, :update, :destroy]
+
   def index
   	@spots = Spot.all
+    @spots = @spots.order(:favorites_count)
+    if session[:user_id]
+      @user = User.find(session[:id])
+    end
   end
 
   def show
@@ -35,9 +40,9 @@ class SpotsController < ApplicationController
   	@spot.destroy
   	redirect_to spots_path
   end
-  
+
   private
-  
+
   def spot_params
   	params.require(:spot).permit([:name, :address, :phone, :website, :price, :photo])
 
