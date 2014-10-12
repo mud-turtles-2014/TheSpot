@@ -6,7 +6,7 @@ class CreateSpots < ActiveRecord::Migration
       t.string :address, null: false
       t.string :phone, null: false
       t.string :website
-      t.integer :price, null: false
+      t.integer :price
       t.string :photo
       t.integer :favorites_count, default: 0
       t.timestamps

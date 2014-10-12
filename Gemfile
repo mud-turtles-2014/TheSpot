@@ -30,6 +30,7 @@ gem 'spring',        group: :development
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'factory_girl_rails'
+gem 'pry'
 
 
 # Use unicorn as the app server

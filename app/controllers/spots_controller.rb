@@ -1,5 +1,6 @@
 class SpotsController < ApplicationController
   before_filter :load_spot, only: [:show, :edit, :update, :destroy]
+
   def index
   	@spots = Spot.all
   end
@@ -35,9 +36,9 @@ class SpotsController < ApplicationController
   	@spot.destroy
   	redirect_to spots_path
   end
-  
+
   private
-  
+
   def spot_params
   	params.require(:spot).permit([:name, :address, :phone, :website, :price, :photo])
 
