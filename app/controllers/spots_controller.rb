@@ -1,3 +1,4 @@
+require 'pry'
 class SpotsController < ApplicationController
   before_filter :load_spot, only: [:show, :edit, :update, :destroy]
 
@@ -49,7 +50,7 @@ class SpotsController < ApplicationController
       @spots = []
       response = Yelp.client.search('New York City', category_filter: 'breakfast_brunch', term: params[:q])
       response.businesses.each do |biz|
-      @spots << Spot.create(name: biz.name, address: biz.location.display_address.join(", "), phone: biz.phone, website: biz.url, photo: biz.image_url)
+        @spots << Spot.where(name: biz.name, address: biz.location.display_address.join(", "), phone: biz.phone, website: biz.url, photo: biz.image_url).first_or_create
       end
     end
   end
