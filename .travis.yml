@@ -7,14 +7,10 @@ before_install: gem install bundler
 rvm:
   - 2.0.0
 
-env:
-  -DB=postgresql
-
 before_script:
   - psql -c 'create database TheSpot_test;' -U postgres
 
-script: #'bundle exec rspec spec'
-  -RAILS_ENV=test bundle exec rspec spec –trace db:migrate spec
+script: 'bundle exec rake'
 
 notifications:
   email: false
