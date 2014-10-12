@@ -18,17 +18,26 @@ class SpotsController < ApplicationController
   end
 
   def create
-    @spot = Spot.find_by(name: spot_params[:name])
+    @spot = Spot.find_by(name: params[:spot][:name])
     if @spot
       redirect_to spot_path(@spot)
     else
-      @new_spot = Spot.new(spot_params)
-  	     if @new_spot.save
-  		      redirect_to spot_path(@new_spot)
-  	     else
-  	    redirect_to new_spot_path
-      end
-  	end
+      response = Yelp.client.search('New York City', category_filter: 'breakfast_brunch', term: params[:spot][:name], limit: 1)
+        if response.businesses.length == 1
+          binding.pry
+          @yelp_spot = Spot.find_by(name: response.businesses.first.name)
+            if @yelp_spot
+              redirect_to spot_path(@yelp_spot)
+            end
+        else
+          @new_spot = Spot.new(spot_params)
+  	       if @new_spot.save
+            redirect_to spot_path(@new_spot)
+  	       else
+            redirect_to new_spot_path
+          end
+        end
+    end
   end
 
   def update
