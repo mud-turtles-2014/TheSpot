@@ -5,7 +5,7 @@ class SpotsController < ApplicationController
   	@spots = Spot.all
     @spots = @spots.order(:favorites_count)
     if session[:user_id]
-      @user = User.find(session[:id])
+      @user = User.find(session[:user_id])
     end
   end
 

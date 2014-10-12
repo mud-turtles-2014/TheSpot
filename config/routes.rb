@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :spots do
-    resources :comments, only: [:create]
+    resources :comments, only: [:create, :new]
   end
 
   delete '/logout' => 'sessions#destroy'
