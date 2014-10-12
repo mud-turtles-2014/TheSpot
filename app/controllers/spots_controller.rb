@@ -1,3 +1,4 @@
+require 'pry'
 class SpotsController < ApplicationController
   before_filter :load_spot, only: [:show, :edit, :update, :destroy]
 
@@ -19,11 +20,16 @@ class SpotsController < ApplicationController
   end
 
   def create
-  	@spot = Spot.new(spot_params)
-  	if @spot.save
-  		redirect_to spot_path(@spot)
-  	  else
+    @spot = Spot.find_by(name: spot_params[:name])
+    if @spot
+      redirect_to spot_path(@spot)
+    else
+      @new_spot = Spot.new(spot_params)
+  	     if @new_spot.save
+  		      redirect_to spot_path(@new_spot)
+  	     else
   	    redirect_to new_spot_path
+      end
   	end
   end
 
@@ -51,7 +57,7 @@ class SpotsController < ApplicationController
       @spots = []
       response = Yelp.client.search('New York City', category_filter: 'breakfast_brunch', term: params[:q])
       response.businesses.each do |biz|
-      @spots << Spot.create(name: biz.name, address: biz.location.display_address.join(", "), phone: biz.phone, website: biz.url, photo: biz.image_url)
+        @spots << Spot.where(name: biz.name, address: biz.location.display_address.join(", "), phone: biz.phone, website: biz.url, photo: biz.image_url).first_or_create
       end
     end
   end

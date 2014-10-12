@@ -7,16 +7,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<nav>
-  <% if !session[:user_id] %>
-  <%= link_to "Log In", '/login' %>
-  <%= link_to "Sign up", '/users/new' %>
-  <% else %>
-  <%= link_to "Log Out", '/logout', method: :delete %>
-  <%= link_to "Add a Spot", new_spot_path %>
-  <% end %>
-</nav>
-<%= yield %>
 
+  <nav>
+    <%= link_to "NYC Brunch", spots_path, class: 'logo'%>
+    <ul class="nav">
+      <li class="search">
+        <%= form_tag("/search", method: "get") do %>
+          <%= text_field_tag(:q) %>
+          <%= submit_tag("Search") %>
+        <% end %>
+      </li>
+
+      <% if session[:user_id] %>
+        <li><%= link_to "new spot", new_spot_path %></li>
+        <li><%= link_to "logout", '/logout', method: :delete %></li>
+      <% else %>
+        <li><%= link_to "login", '/login' %></li>
+      <% end %>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <%= yield %>
+  </div>
 </body>
 </html>
