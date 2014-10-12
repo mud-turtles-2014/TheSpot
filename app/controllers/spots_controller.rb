@@ -18,11 +18,16 @@ class SpotsController < ApplicationController
   end
 
   def create
-  	@spot = Spot.new(spot_params)
-  	if @spot.save
-  		redirect_to spot_path(@spot)
-  	  else
+    @spot = Spot.find_by(name: spot_params[:name])
+    if @spot
+      redirect_to spot_path(@spot)
+    else
+      @new_spot = Spot.new(spot_params)
+  	     if @new_spot.save
+  		      redirect_to spot_path(@new_spot)
+  	     else
   	    redirect_to new_spot_path
+      end
   	end
   end
 
