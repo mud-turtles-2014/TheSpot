@@ -1,0 +1,36 @@
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #666;
+  width: 100%;
+  margin: 0;
+  height: 50px;
+
+  .logo {
+    margin-left: 20px;
+    width: 30%;
+    display: inline-block;
+    float: left;
+    line-height: 50px;
+  }
+
+  a {
+    text-decoration: none;
+    font-family: sans-serif;
+    color: white;
+  }
+
+  ul {
+    float: right;
+    margin: 0;
+    padding: 0;
+    margin-right: 20px;
+    li {
+      line-height: 50px;
+      list-style: none;
+      display: inline-block;
+    }
+  }
+
+}
