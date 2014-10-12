@@ -1,6 +1,8 @@
 gem 'dotenv-rails', :groups => [:development, :test]
 source 'https://rubygems.org'
 
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'

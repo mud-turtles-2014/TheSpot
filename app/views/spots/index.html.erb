@@ -1,22 +1,31 @@
-<ul>
+
   <% @spots.each do |spot| %>
-    <li><b><%= link_to spot.name, spot_path(spot) %></b></li>
-    <li><%= spot.address %></li>
-    <li><%= spot.phone %></li>
-    <li><%= spot.website %></li>
-    <li><%= spot.photo %></li>
-    <li>
-      <%= spot.favorites_count %>
-      <% if @user %>
-        <% if @user.favorite == nil %>
-          <%= link_to 'My Favorite!', "/spots/#{spot.id}/favorites", :method => :post %>
-        <% elsif @user && spot.favorites.include?(@user.favorite) %>
-          <p>This is your favorite!</p>
-        <% else %>
-          <p>Thinking of changing your mind?</p>
-        <% end %>
-      <% end %>
-    </li>
-    <br>
+    <div class="spot">
+      <ul>
+        <li><b><%= link_to spot.name, spot_path(spot) %></b></li>
+        <li><%= spot.address %></li>
+        <li><%= spot.phone %></li>
+        <li><%= spot.website %></li>
+        <li><%= spot.photo %></li>
+        <li>
+          <%= spot.favorites_count %>
+          <% if @user %>
+            <% if @user.favorite == nil %>
+              <%= link_to 'My Favorite!', "/spots/#{spot.id}/favorites", :method => :post %>
+            <% elsif @user && spot.favorites.include?(@user.favorite) %>
+              <p>This is your favorite!</p>
+            <% else %>
+              <p>Thinking of changing your mind?</p>
+            <% end %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
   <% end %>
-</ul>
+
+
+<%= form_tag("/search", method: "get") do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>

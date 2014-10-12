@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
     if @user
       session[:user_id] = @user.id
-      redirect_to login_path  # BUGBUG redirect spot_index_path? (route for spots not yet defined)
+      redirect_to spots_path
     else
       flash[:login] = "Invalid Credentials"
       redirect_to login_path
@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session.clear
-    redirect_to login_path
+    redirect_to spots_path
   end
 
   private

@@ -10,16 +10,24 @@
   <nav>
     <%= link_to "NYC Brunch", "/" , class: 'logo'%>
     <ul class="nav">
-      <!--li class="active"><%= link_to "home", "/" %></li-->
-      <li class="search"><!--%= render "search" %--></li>
+      <li class="search">
+        <%= form_tag("/search", method: "get") do %>
+          <%= text_field_tag(:q) %>
+          <%= submit_tag("Search") %>
+        <% end %>
+      </li>
+
       <% if session[:user_id] %>
+        <li><%= link_to "new spot", new_spot_path %></li>
         <li><%= link_to "logout", logout_path %></li>
       <% else %>
         <li><%= link_to "login", login_path %></li>
       <% end %>
     </ul>
   </nav>
-<%= yield %>
 
+  <div class="container">
+    <%= yield %>
+  </div>
 </body>
 </html>

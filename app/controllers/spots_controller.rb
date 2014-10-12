@@ -41,6 +41,19 @@ class SpotsController < ApplicationController
   	redirect_to spots_path
   end
 
+  def search
+    @spot = Spot.find_by(name: params[:q])
+    if @spot
+      redirect_to spot_path(@spot)
+    else
+      @spots = []
+      response = Yelp.client.search('New York City', category_filter: 'breakfast_brunch', term: params[:q])
+      response.businesses.each do |biz|
+      @spots << Spot.create(name: biz.name, address: biz.location.display_address.join(", "), phone: biz.phone, website: biz.url, photo: biz.image_url)
+      end
+    end
+  end
+
   private
 
   def spot_params

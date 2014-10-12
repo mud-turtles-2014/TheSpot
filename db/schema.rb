@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20141010191900) do
     t.string   "address",                     null: false
     t.string   "phone",                       null: false
     t.string   "website"
-    t.integer  "price"
+    t.integer  "price",                       null: false
     t.string   "photo"
     t.integer  "favorites_count", default: 0
     t.datetime "created_at"
