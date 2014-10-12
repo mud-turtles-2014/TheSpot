@@ -3,7 +3,9 @@ class SpotsController < ApplicationController
 
   def index
   	@spots = Spot.all
-    @user = User.find(session[:id])
+    if session[:user_id]
+      @user = User.find(session[:id])
+    end
   end
 
   def show
