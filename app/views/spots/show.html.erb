@@ -9,7 +9,7 @@
 <%#= show_price(@spot.price) %><br>
 <%= show_photo(@spot.photo) if @spot.photo %>
 
-<%= button_to "Leave Comment", { action: "new"}, form_class: "comment" %>
+<%= button_to "Leave Comment", new_spot_comment_path(@spot), method: :get %>
 <% @spot.comments.each do |comment| %>
-	<%= comment.body %>
+	<%= comment.body %><br>
 <% end %>
