@@ -7,8 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
   <nav>
-    <%= link_to "NYC Brunch", "/" , class: 'logo'%>
+    <%= link_to "NYC Brunch", spots_path, class: 'logo'%>
     <ul class="nav">
       <li class="search">
         <%= form_tag("/search", method: "get") do %>
@@ -19,9 +20,9 @@
 
       <% if session[:user_id] %>
         <li><%= link_to "new spot", new_spot_path %></li>
-        <li><%= link_to "logout", logout_path %></li>
+        <li><%= link_to "logout", '/logout', method: :delete %></li>
       <% else %>
-        <li><%= link_to "login", login_path %></li>
+        <li><%= link_to "login", '/login' %></li>
       <% end %>
     </ul>
   </nav>
