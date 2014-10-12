@@ -1,6 +1,10 @@
 <%= link_to 'Back', spots_path %><br>
 <h1><%= @spot.name %></h1>
 <%= link_to 'Edit', edit_spot_path(@spot) %><br>
+<%= button_to "Delete", @spot, method: :delete, action: 'destroy' %>
+<%= button_to "Edit", edit_spot_path(@spot), method: :get %>
+
+
 <%= @spot.address %><br>
 <%= @spot.phone %><br>
 <% if @spot.website %>
