@@ -1,0 +1,38 @@
+.edit_button {
+  border: none;
+  background: url("edit.png");
+  width: 20px;
+  height: 17px;
+ 	position: absolute;
+ 	top: 10px;
+ 	right: 0px;
+}
+
+.delete_button {
+  border: none;
+  background: url("delete.png") no-repeat;
+  width: 12px;
+  height: 14px;
+  position: absolute;
+  top:13px;
+ 	right: 20px;
+}
+
+.comment {
+	width: 400px;
+	margin-left: 20px;
+	position: relative;
+	background-color: white;
+	border: 3px solid #F5F5F5;
+/*	border-right: none;
+	border-bottom: none;*/
+	padding: 5px;
+	padding-bottom: 3px;
+	margin-bottom: 15px;
+	margin-top: 15px;
+}
+
+.comment p {
+	font-size: 15px;
+	line-height: 10px;
+}
