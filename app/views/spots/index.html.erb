@@ -1,0 +1,20 @@
+<ul>
+  <% @spots.each do |spot| %>
+    <li><b><%= spot.name %></b></li>
+    <li><%= spot.address %></li>
+    <li><%= spot.phone %></li>
+    <li><%= spot.website %></li>
+    <li><%= spot.photo %></li>
+    <li>
+      <%= spot.favorites_count %>
+      <% if @user && @user.favorite == nil %>
+        <%= link_to 'My Favorite!', "/spots/#{spot.id}/favorites", :method => :post %>
+      <% elsif @user && spot.favorites.include?(@user.favorite) %>
+        <p>This is your favorite!</p>
+      <% else %>
+        <p>Thinking of changing your mind?</p>
+      <% end %>
+    </li>
+    <br>
+  <% end %>
+</ul>
