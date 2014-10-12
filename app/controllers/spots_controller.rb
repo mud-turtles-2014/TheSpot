@@ -2,7 +2,8 @@ class SpotsController < ApplicationController
   before_filter :load_spot, only: [:show, :edit, :update, :destroy]
 
   def index
-  	@spots = Spot.all.order(:favorites_count)
+  	@spots = Spot.all
+    @spots = @spots.order(:favorites_count)
     if session[:user_id]
       @user = User.find(session[:id])
     end
