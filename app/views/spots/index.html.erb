@@ -15,7 +15,7 @@
             <% elsif @user && spot.favorites.include?(@user.favorite) %>
               <p>This is your favorite!</p>
             <% else %>
-              <p>Thinking of changing your mind?</p>
+              <p>Thinking of changing your mind? <%= link_to 'Delete your old favorite!', "/spots/#{spot.id}/favorites/#{@user.favorite.id}", :method => :delete %> </p>
             <% end %>
           <% end %>
         </li>

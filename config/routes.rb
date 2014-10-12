@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   resources :spots do
-    resources :favorites, only: [:create]
+    resources :favorites, only: [:create, :destroy]
   end
 
   resources :spots do
