@@ -1,0 +1,6 @@
+<%= comment.user.username %> commented:<br>
+<%= comment.body %><br>
+<% if comment.user_can_edit(user) %>
+	<%= button_to 'Edit', edit_spot_comment_path(spot, comment.id), method: :get %>
+	<%= button_to 'Delete', spot_comment_path(spot, comment.id), method: :delete, action: 'destroy' %>
+<% end %>
