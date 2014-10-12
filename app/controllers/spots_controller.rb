@@ -11,6 +11,8 @@ class SpotsController < ApplicationController
   end
 
   def show
+    @can_edit = current_user == @spot.user
+    @user = current_user
   end
 
   def new
