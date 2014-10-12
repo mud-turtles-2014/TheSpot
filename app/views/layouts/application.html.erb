@@ -10,6 +10,7 @@
 <nav>
   <% if !session[:user_id] %>
   <%= link_to "Log In", '/login' %>
+  <%= link_to "Sign up", '/users/new' %>
   <% else %>
   <%= link_to "Log Out", '/logout', method: :delete %>
   <%= link_to "Add a Spot", new_spot_path %>
