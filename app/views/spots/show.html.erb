@@ -1,24 +1,29 @@
-<%= link_to 'Back', spots_path %><br>
-<h1><%= @spot.name %></h1>
+<%= link_to '<< Back', spots_path, id:"back" %><br>
+<div id="spot">
+	
+	<div id ="spot-info">
+		<h1><%= @spot.name %></h1>
 
-<% if @can_edit %>
-	<%= button_to "Delete", @spot, method: :delete, action: 'destroy' %>
-	<%= button_to "Edit", edit_spot_path(@spot), method: :get %>
-<% end %>
+		<% if @can_edit %>
+			<%= button_to "Delete", @spot, method: :delete, action: 'destroy' %>
+			<%= button_to "Edit", edit_spot_path(@spot), method: :get %>
+		<% end %>
 
-<%= @spot.address %><br>
-<%= @spot.phone %><br>
-<% if @spot.website %>
-<%= @spot.website %><br>
-<% end %>
-<%#= show_price(@spot.price) %><br>
-<%= show_photo(@spot.photo) if @spot.photo %>
+		<%= show_photo(@spot.photo) if @spot.photo %>
+		<%= @spot.address %><br>
+		<%= @spot.phone %><br>
+		<% if @spot.website %>
+		<%= @spot.website %><br>
+		<% end %>
+		<%#= show_price(@spot.price) %><br>
+	</div>
 
-<%= form_for [@spot, Comment.new]  do |f| %>
-  <%= f.text_area :body, :placeholder => "How is this spot?" %><br>
-  <%= f.submit %>
-<% end %>
+	<%= form_for [@spot, Comment.new]  do |f| %>
+	  <%= f.text_area :body, :placeholder => "How is this spot?" %><br>
+	  <%= f.submit "Submit", id:'submit-comment'%>
+	<% end %>
 
-<% @spot.comments.each do |comment| %>
-	<%= render partial:'inlinecomment', locals: {spot: @spot, comment: comment, user: @user} %>
-<% end %>
+	<% @spot.comments.each do |comment| %>
+		<%= render partial:'inlinecomment', locals: {spot: @spot, comment: comment, user: @user} %>
+	<% end %>
+</div>

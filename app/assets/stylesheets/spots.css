@@ -1,0 +1,35 @@
+#spot {
+	width: 70%;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	font-size: 1.25em;
+	background-color: #f6f6f6;
+}
+
+#spot textarea {
+	width: 50%;
+	height: 150px;
+	font-size: 1em;
+}
+
+#spot-info {
+}
+
+#submit-comment {
+	background-color: #4ECDC4;
+	font-size: .75em;
+	border-radius: 10px;
+	border: none;
+	color: white;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#back {
+	text-decoration: none;
+	font-size: 1em;
+	color: #4ECDC4;
+	margin-top: 20px;
+	left: 20px;
+}

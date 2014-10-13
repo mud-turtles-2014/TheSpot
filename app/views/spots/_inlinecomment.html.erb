@@ -1,6 +1,9 @@
-<%= comment.user.username %> commented:<br>
-<%= comment.body %><br>
+<div class="comment">
+<p class="user-info">Date: <%= comment.created_at.to_date %></a></p>
+<p class="user-info">by <%= comment.user.username %></p>
+<p class = "comment_body"><%= comment.body %></p>
 <% if comment.user_can_edit(user) %>
-	<%= button_to 'Edit', edit_spot_comment_path(spot, comment.id), method: :get %>
-	<%= button_to 'Delete', spot_comment_path(spot, comment.id), method: :delete, action: 'destroy' %>
+	<%= button_to '', edit_spot_comment_path(spot, comment.id), method: :get, class: 'edit_button'%>
+	<%= button_to '', spot_comment_path(spot, comment.id), method: :delete, action: 'destroy',class: 'delete_button' %>
 <% end %>
+</div>
