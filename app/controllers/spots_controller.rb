@@ -26,7 +26,6 @@ class SpotsController < ApplicationController
     else
       response = Yelp.client.search('New York City', category_filter: 'breakfast_brunch', term: params[:spot][:name], limit: 1)
         if response.businesses.length == 1
-          binding.pry
           @yelp_spot = Spot.find_by(name: response.businesses.first.name)
             if @yelp_spot
               redirect_to spot_path(@yelp_spot)
@@ -65,8 +64,9 @@ class SpotsController < ApplicationController
     else
       @spots = []
       response = Yelp.client.search('New York City', category_filter: 'breakfast_brunch', term: params[:q])
+      binding.pry
       response.businesses.each do |biz|
-        @spots << Spot.where(name: biz.name, address: biz.location.display_address.join(", "), phone: biz.phone, website: biz.url, photo: biz.image_url).first_or_create
+        @spots << Spot.where(name: biz.name, address: biz.location.display_address.join(", "), phone: biz.phone, website: biz.url, photo: biz.image_url.gsub!(/ms.jpg/, 'ls.jpg')).first_or_create
       end
     end
   end
