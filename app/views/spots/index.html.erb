@@ -6,15 +6,15 @@
         <li><b><%= link_to spot.name, spot_path(spot) %></b></li>
         <li class="address"><%= spot.address %></li>
         <li>
-          Favorited <%= spot.favorites_count %> times <br>
+          <%= favorites(spot.favorites_count) %><br>
           <% if @user %>
             <% if @user.favorite == nil %>
-              <%= button_to 'Make this my spot', "/spots/#{spot.id}/favorites" %>
+              <%= button_to 'Make this my spot', "/spots/#{spot.id}/favorites", class: "fave-button" %>
             
             <% elsif spot.is_favorited_by(@user) %>
               <%= button_to 'Nix this spot', "/spots/#{spot.id}/favorites/#{@user.favorite.id}", :method => :delete %>
             <% else %>
-              <%= button_to 'Make this my new spot', "/spots/#{spot.id}/favorites" %>
+              <%= button_to 'Make this my new spot', "/spots/#{spot.id}/favorites", class: "fave-button"%>
 
             <% end %>
           <% end %>

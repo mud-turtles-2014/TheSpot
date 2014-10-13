@@ -9,7 +9,7 @@
 			<%= button_to "Edit", edit_spot_path(@spot), method: :get %>
 		<% end %>
 
-		<%= show_photo(@spot.photo) if @spot.photo %>
+		<%= image_tag(@spot.photo, :class =>'spot-photo')%><br>
 		<i class="fa fa-building"></i> <%= @spot.address %><br>
 		<i class="fa fa-phone"></i> <%= number_to_phone(@spot.phone) %><br>
 		<% if @spot.website %>
@@ -17,10 +17,11 @@
 		<% end %>
 		<%#= show_price(@spot.price) %><br>
 	</div>
-
-	<%= form_for [@spot, Comment.new]  do |f| %>
-	  <%= f.text_area :body, :placeholder => "How is this spot?" %><br>
-	  <%= f.submit "Submit", id:'submit-comment'%>
+	<% if @user %>
+		<%= form_for [@spot, Comment.new]  do |f| %>
+		  <%= f.text_area :body, :placeholder => "How is this spot?" %><br>
+		  <%= f.submit "Submit", id:'submit-comment'%>
+		<% end %>
 	<% end %>
 
 	<% @spot.comments.each do |comment| %>

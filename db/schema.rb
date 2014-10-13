@@ -33,12 +33,12 @@ ActiveRecord::Schema.define(version: 20141010191900) do
 
   create_table "spots", force: true do |t|
     t.integer  "user_id"
-    t.string   "name",                        null: false
-    t.string   "address",                     null: false
-    t.string   "phone",                       null: false
+    t.string   "name",                                    null: false
+    t.string   "address",                                 null: false
+    t.string   "phone",                                   null: false
     t.string   "website"
     t.integer  "price"
-    t.string   "photo"
+    t.string   "photo",           default: "thespot.png"
     t.integer  "favorites_count", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
