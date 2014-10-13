@@ -19,8 +19,9 @@
 }
 
 .comment {
-	width: 400px;
-	margin-left: 20px;
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
 	position: relative;
 	background-color: white;
 	border: 3px solid #F5F5F5;
@@ -33,6 +34,14 @@
 }
 
 .comment p {
-	font-size: 15px;
-	line-height: 10px;
+	/*line-height: 5em;*/
+	text-align: left;
 }
+
+.user-info {
+	font-size: 1em;
+	line-height: 1em;
+	/*background-color: red;*/
+	margin: 0px;
+}
+

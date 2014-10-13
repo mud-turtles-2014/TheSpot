@@ -1,6 +1,6 @@
 <div class="comment">
-<p>Date: <%= comment.created_at.to_date %></a></p>
-<p>by <%= comment.user.username %></p>
+<p class="user-info">Date: <%= comment.created_at.to_date %></a></p>
+<p class="user-info">by <%= comment.user.username %></p>
 <p class = "comment_body"><%= comment.body %></p>
 <% if comment.user_can_edit(user) %>
 	<%= button_to '', edit_spot_comment_path(spot, comment.id), method: :get, class: 'edit_button'%>
