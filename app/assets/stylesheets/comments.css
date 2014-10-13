@@ -18,6 +18,20 @@
  	right: 20px;
 }
 
+.helpful {
+	font-size: .6em;
+	line-height: 1em;
+	position: absolute;
+  	top:13px;
+ 	right: 20px;
+ 	background-color: #4ECDC4;
+	border-radius: 10px;
+	border: none;
+	color: white;
+	padding-left: 10px;
+	padding-right: 10px;	
+}
+
 .comment {
 	width: 70%;
 	position: relative;

@@ -8,12 +8,15 @@ Rails.application.routes.draw do
   end
 
   resources :spots do
-    resources :comments
+    resources :comments do
+      resources :votes, only: [:create, :destroy]
+    end
   end
 
   delete '/logout' => 'sessions#destroy'
   resources :users
   get '/search' => 'spots#search'
+  get '/upvote/:id' => 'comments#upvote'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
