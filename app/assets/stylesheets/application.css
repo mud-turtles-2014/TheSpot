@@ -13,9 +13,23 @@
  *= require_tree .
  *= require_self
  */
-
+/*
 html, body {
   margin: 0;
   padding 0;
+}*/
+
+.active {
+	color: red;
 }
 
+.fave-button {
+	display: none;
+	background-color: white;
+	font-size: .75em;
+	border-radius: 10px;
+	border: 1px solid gray;
+	color: black;
+	padding-left: 10px;
+	padding-right: 10px;
+}

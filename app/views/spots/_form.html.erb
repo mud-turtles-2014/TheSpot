@@ -1,9 +1,11 @@
-<%= form_for @spot do |f| %>
-  <%= f.text_field :name, :placeholder => "Enter business name" %><br>
-  <%= f.text_area :address, :placeholder => "Enter street address, city, state and zip code" %><br>
-  <%= f.text_field :phone, :placeholder => "Enter business phone number" %><br>
-  <%= f.text_field :website, :placeholder => "Enter website for spot" %><br>
-  <%= f.select :price, [['$', 1], ['$$', 2], ['$$$', 3], ['$$$$', 4]] %><br>
-  <%= f.text_field :photo, :placeholder => "Enter URL of business photo" %><br>
-  <%= f.submit %>
-<% end %>
+<div id="spot-form">
+	<%= form_for @spot do |f| %>
+	  <%= f.text_field :name, :placeholder => "Enter business name" %><br>
+	  <%= f.text_area :address, :placeholder => "Enter street address, city, state and zip code" %><br>
+	  <%= f.text_field :phone, :placeholder => "Enter business phone number" %><br>
+	  <%= f.text_field :website, :placeholder => "Enter website for spot" %><br>
+	  <%= f.select :price, [['$', 1], ['$$', 2], ['$$$', 3], ['$$$$', 4]] %><br>
+	  <%= f.text_field :photo, :placeholder => "Enter URL of business photo" %><br>
+	  <%= f.submit %>
+	<% end %>
+</div>

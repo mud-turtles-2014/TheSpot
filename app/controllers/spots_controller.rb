@@ -4,7 +4,7 @@ class SpotsController < ApplicationController
 
   def index
   	@spots = Spot.all
-    @spots = @spots.order(:favorites_count)
+    @spots = @spots.order('favorites_count desc')
     if session[:user_id]
       @user = User.find(session[:user_id])
     end
@@ -32,6 +32,7 @@ class SpotsController < ApplicationController
             end
         else
           @new_spot = Spot.new(spot_params)
+          @new_spot.assign_attributes(user: current_user)
   	       if @new_spot.save
             redirect_to spot_path(@new_spot)
   	       else

@@ -13,3 +13,18 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+$(document).ready(function(){
+	// $('.spot').hover(function(){
+	// 		console.log("hover");
+	// 		console.log($(this).closest('ul'));
+	// 		$(this).children('ul').css('background-color','red');
+	// });
+
+	$('.spot').hover(function(){
+		$(this).children('ul').css('background','rgba(127,245,235,0.8)');
+		$(this).find('.fave-button').show();
+	}, function(){
+		$(this).children('ul').css('background','rgba(255,255,255,0.7)');
+		$(this).find('.fave-button').hide();
+	});
+});

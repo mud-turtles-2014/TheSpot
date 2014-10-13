@@ -1,6 +1,9 @@
 class FavoritesController < ApplicationController
 
   def create
+    if current_user.favorite
+      current_user.favorite.destroy
+    end
     @favorite = Favorite.new(user_id: session[:user_id], spot_id: params[:spot_id])
       if @favorite.save
         redirect_to spots_path

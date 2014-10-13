@@ -1,7 +1,4 @@
 module SpotsHelper
-  def show_photo(url)
-  	("<img src='" + url + "' class='spot-photo'/>").html_safe
-  end
 
   def show_price(count)
   	string = ""
@@ -9,9 +6,13 @@ module SpotsHelper
   	string.html_safe
   end
 
-  def format_phone(phone)
-  	if phone.length == 9
-  	  "212-123-1234".html_safe
+  def favorites(count)
+  	if count == 0
+  	  return "No favorties yet"
+  	elsif count == 1
+  	  return "Favorited 1 time"
+  	else
+  	  return "Favorited #{count} times"
   	end
   end
 end
