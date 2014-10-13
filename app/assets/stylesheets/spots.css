@@ -8,14 +8,32 @@
 	margin-right: auto;
 	margin-left: auto;
 	font-size: 1.25em;
-	background-color: #f6f6f6;
+	background-color: #F5FFFA;
+	border-radius: 10px;
 	padding-left: 20px;
+	font-family: 'Alegreya Sans';
+	padding-bottom: 20px;
 }
 
 #spot textarea {
 	width: 50%;
 	height: 150px;
 	font-size: 1em;
+}
+
+#spot a {
+	color: #4ECDC4;
+	text-decoration: none;
+}
+
+.spot-buttons {
+	background-color: #4ECDC4;
+	font-size: .75em;
+	border-radius: 10px;
+	border: none;
+	color: white;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 #submit-comment {

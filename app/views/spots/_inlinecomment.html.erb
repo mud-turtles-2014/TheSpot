@@ -1,5 +1,5 @@
 <div class="comment">
-<p class="user-info">Date: <%= comment.created_at.to_date %></a></p>
+<p class="user-info">Posted <%= comment.created_at.strftime("%b/%d/%y") %></a></p>
 <p class="user-info">by <%= comment.user.username %></p>
 <p class = "comment_body"><%= comment.body %></p>
 <% if comment.user_can_edit(user) %>
