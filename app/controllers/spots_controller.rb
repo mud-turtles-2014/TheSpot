@@ -65,6 +65,7 @@ class SpotsController < ApplicationController
     else
       @spots = []
       response = Yelp.client.search('New York City', category_filter: 'breakfast_brunch', term: params[:q])
+      binding.pry
       response.businesses.each do |biz|
         @spots << Spot.where(name: biz.name, address: biz.location.display_address.join(", "), phone: biz.phone, website: biz.url, photo: biz.image_url).first_or_create
       end
