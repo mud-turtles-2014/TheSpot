@@ -19,3 +19,11 @@ response.businesses.each do |biz|
   Spot.create(name: biz.name, address: biz.location.display_address.join(", "), phone: biz.phone, website: biz.url, photo: biz.image_url.gsub!(/ms.jpg/, 'ls.jpg'))
 end
 user_no_fave = User.create(username:"nicolle", password:"test", password_confirmation:"test", email:"nicolle@gmail.com")
+
+500.times do
+  User.create(username: 'test', password:'test', password_confirmation: 'test', email: 'test@test.com')
+end
+
+User.find_each do |test|
+  Favorite.create(user_id: test.id, spot_id: Spot.all.sample.id)
+end
