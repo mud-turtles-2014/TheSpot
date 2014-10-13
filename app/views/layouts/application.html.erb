@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>TheSpot</title>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <%= stylesheet_link_tag    'application', media: 'all'%>
   <%= javascript_include_tag 'application'%>
   <%= csrf_meta_tags %>
@@ -9,7 +10,7 @@
 <body>
 
   <nav>
-    <%= link_to "NYC Brunch", spots_path, class: 'logo'%>
+    <%= link_to "TheSpot", spots_path, class: 'logo'%>
     <ul class="nav">
       <li class="search">
         <%= form_tag("/search", method: "get") do %>

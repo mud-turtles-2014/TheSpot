@@ -1,19 +1,19 @@
-<%= link_to '<< Back', spots_path, id:"back" %><br>
+
 <div id="spot">
 	
 	<div id ="spot-info">
 		<h1><%= @spot.name %></h1>
-
+		<h3><%= @spot.favorites_count %> favorites </h3>
 		<% if @can_edit %>
 			<%= button_to "Delete", @spot, method: :delete, action: 'destroy' %>
 			<%= button_to "Edit", edit_spot_path(@spot), method: :get %>
 		<% end %>
 
 		<%= show_photo(@spot.photo) if @spot.photo %>
-		<%= @spot.address %><br>
-		<%= @spot.phone %><br>
+		<i class="fa fa-building"></i> <%= @spot.address %><br>
+		<i class="fa fa-phone"></i> <%= number_to_phone(@spot.phone) %><br>
 		<% if @spot.website %>
-		<%= @spot.website %><br>
+		<i class="fa fa-desktop"></i> <%= link_to "Visit webpage", @spot.website %><br>
 		<% end %>
 		<%#= show_price(@spot.price) %><br>
 	</div>

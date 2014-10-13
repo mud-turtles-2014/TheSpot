@@ -1,19 +1,20 @@
+#active {
+	background-color: yellow;
+}
+
 #spot {
 	width: 70%;
 	margin-right: auto;
 	margin-left: auto;
-	text-align: center;
 	font-size: 1.25em;
 	background-color: #f6f6f6;
+	padding-left: 20px;
 }
 
 #spot textarea {
 	width: 50%;
 	height: 150px;
 	font-size: 1em;
-}
-
-#spot-info {
 }
 
 #submit-comment {
@@ -32,4 +33,19 @@
 	color: #4ECDC4;
 	margin-top: 20px;
 	left: 20px;
+}
+
+.spot-photo {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin: 20px;
+}
+
+.spot-photo img {
+	border: 10px solid #4ECDC4;
+}
+
+h1, h3 {
+	text-align: center;
 }
