@@ -1,9 +1,18 @@
 <div class="comment">
-<p class="user-info">Date: <%= comment.created_at.to_date %></a></p>
+<p class="user-info">Posted <%= comment.created_at.strftime("%b/%d/%y") %></a></p>
 <p class="user-info">by <%= comment.user.username %></p>
+<p class="user-info"> Helpful votes: <%= comment.votes_count %></p>
+
 <p class = "comment_body"><%= comment.body %></p>
 <% if comment.user_can_edit(user) %>
 	<%= button_to '', edit_spot_comment_path(spot, comment.id), method: :get, class: 'edit_button'%>
 	<%= button_to '', spot_comment_path(spot, comment.id), method: :delete, action: 'destroy',class: 'delete_button' %>
+<% else %>
+	<% if user && user.has_voted_on(comment) %>
+		<% vote_id = user.id_for_vote_on(comment) %>
+		<%= button_to 'Remove as helpful', spot_comment_vote_path(spot.id, comment.id, vote_id), class: "helpful", :method => :delete, action: 'destroy' %>
+	<% elsif user %>
+		<%= button_to 'Mark helpful', "/spots/#{spot.id}/comments/#{comment.id}/votes", class: "helpful" %>
+	<% end %>
 <% end %>
 </div>

@@ -3,13 +3,14 @@
 	
 	<div id ="spot-info">
 		<h1><%= @spot.name %></h1>
-		<h3><%= @spot.favorites_count %> favorites </h3>
+		<h3><%= favorites(@spot.favorites_count) %></h3>
 		<% if @can_edit %>
-			<%= button_to "Delete", @spot, method: :delete, action: 'destroy' %>
-			<%= button_to "Edit", edit_spot_path(@spot), method: :get %>
+			You created this spot on <%= @spot.created_at.strftime("%b/%d/%y") %><br>
+			<%= link_to "Delete", @spot, method: :delete, action: 'destroy'%> |
+			<%= link_to "Edit", edit_spot_path(@spot), method: :get %><br>
 		<% end %>
 
-		<%= image_tag(@spot.photo, :class =>'spot-photo')%><br>
+		<div class='spot-photo'><%= image_tag(@spot.photo, :class =>'spot-photo')%></div><br>
 		<i class="fa fa-building"></i> <%= @spot.address %><br>
 		<i class="fa fa-phone"></i> <%= number_to_phone(@spot.phone) %><br>
 		<% if @spot.website %>
@@ -23,7 +24,11 @@
 		  <%= f.submit "Submit", id:'submit-comment'%>
 		<% end %>
 	<% end %>
-
+	<% if @spot.comments.count > 1 %>
+		<h3>The word around town: </h3>
+	<% else %>
+		<h3>Be the first to comment</h3>
+	<% end %>
 	<% @spot.comments.each do |comment| %>
 		<%= render partial:'inlinecomment', locals: {spot: @spot, comment: comment, user: @user} %>
 	<% end %>
