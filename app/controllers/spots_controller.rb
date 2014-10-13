@@ -5,9 +5,9 @@ class SpotsController < ApplicationController
   def index
   	@spots = Spot.all
     @spots = @spots.order('favorites_count desc')
-    if session[:user_id]
-      @user = User.find(session[:user_id])
-    end
+    # if session[:user_id]
+      @user = current_user
+    # end
   end
 
   def show
@@ -59,12 +59,14 @@ class SpotsController < ApplicationController
   end
 
   def search
+    # raise params.inspect
     @spot = Spot.find_by(name: params[:q])
     if @spot
       redirect_to spot_path(@spot)
     else
       @spots = []
       response = Yelp.client.search('New York City', category_filter: 'breakfast_brunch', term: params[:q])
+      
       response.businesses.each do |biz|
         @spots << Spot.where(name: biz.name, address: biz.location.display_address.join(", "), phone: biz.phone, website: biz.url, photo: biz.image_url.gsub!(/ms.jpg/, 'ls.jpg')).first_or_create
       end

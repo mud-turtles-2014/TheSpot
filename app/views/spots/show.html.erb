@@ -24,8 +24,10 @@
 		  <%= f.submit "Submit", id:'submit-comment'%>
 		<% end %>
 	<% end %>
-	<% if @spot.comments %>
-	<h3>The word around town: </h3>
+	<% if @spot.comments.count > 1 %>
+		<h3>The word around town: </h3>
+	<% else %>
+		<h3>Be the first to comment</h3>
 	<% end %>
 	<% @spot.comments.each do |comment| %>
 		<%= render partial:'inlinecomment', locals: {spot: @spot, comment: comment, user: @user} %>

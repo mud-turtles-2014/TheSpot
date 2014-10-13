@@ -20,3 +20,10 @@ response.businesses.each do |biz|
   Spot.create(user: admin, name: biz.name, address: biz.location.display_address.join(", "), phone: biz.phone, website: biz.url, photo: biz.image_url.gsub!(/ms.jpg/, 'ls.jpg'))
 end
 user_no_fave = User.create(username:"nicolle", password:"test", password_confirmation:"test", email:"nicolle@gmail.com")
+
+500.times do |index|
+  user = User.create(username: index ,password:"password",password_confirmation:"password",email:"sarah@gmail.com")
+  offset = rand(Spot.count)
+  spot = Spot.offset(offset).first
+  Favorite.create(user: user, spot: spot)
+end
