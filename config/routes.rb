@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'spots#index'
   resources :sessions
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
