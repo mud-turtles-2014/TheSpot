@@ -1,22 +1,25 @@
-<ul>
   <% @spots.each do |spot| %>
-    <li><b><%= link_to spot.name, spot_path(spot) %></b></li>
-    <li><%= spot.address %></li>
-    <li><%= spot.phone %></li>
-    <li><%= spot.website %></li>
-    <li><%= spot.photo %></li>
-    <li>
-      <%= spot.favorites_count %>
-      <% if @user %>
-        <% if @user.favorite == nil %>
-          <%= link_to 'My Favorite!', "/spots/#{spot.id}/favorites", :method => :post %>
-        <% elsif @user && spot.favorites.include?(@user.favorite) %>
-          <p>This is your favorite!</p>
-        <% else %>
-          <p>Thinking of changing your mind?</p>
-        <% end %>
-      <% end %>
-    </li>
-    <br>
+    <div class="spot" >
+      <%= image_tag(spot.photo) %>
+      <ul>
+        <li><b><%= link_to spot.name, spot_path(spot) %></b></li>
+        <li class="address"><%= spot.address %></li>
+        <li>
+          <%= favorites(spot.favorites_count) %><br>
+          <% if @user %>
+            <% if @user.favorite == nil %>
+              <%= button_to 'Make this my spot', "/spots/#{spot.id}/favorites", class: "fave-button" %>
+            <% elsif spot.is_favorited_by(@user) %>
+              <%= button_to 'Nix this spot', "/spots/#{spot.id}/favorites/#{@user.favorite.id}", :method => :delete %>
+            <% else %>
+              <%= button_to 'Make this my new spot', "/spots/#{spot.id}/favorites", class: "fave-button"%>
+
+            <% end %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
   <% end %>
-</ul>
+
+
+

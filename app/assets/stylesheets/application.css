@@ -23,6 +23,11 @@ html, body {
 	color: red;
 }
 
+body {
+	background-image: url(http://www.publicdomainpictures.net/pictures/40000/velka/blue-polkadot-background.jpg);
+	font-family: '("Alegreya Sans")';
+}
+
 .fave-button {
 	display: none;
 	background-color: white;

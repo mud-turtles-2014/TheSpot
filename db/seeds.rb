@@ -21,10 +21,18 @@ response.businesses.each do |biz|
 end
 user_no_fave = User.create(username:"nicolle", password:"test", password_confirmation:"test", email:"nicolle@gmail.com")
 
+# <<<<<<< HEAD
 500.times do
   User.create(username: 'test', password:'test', password_confirmation: 'test', email: 'test@test.com')
 end
 
 User.find_each do |test|
   Favorite.create(user_id: test.id, spot_id: Spot.all.sample.id)
+# =======
+# 500.times do |index|
+#   user = User.create(username: index ,password:"password",password_confirmation:"password",email:"sarah@gmail.com")
+#   offset = rand(Spot.count)
+#   spot = Spot.offset(offset).first
+#   Favorite.create(user: user, spot: spot)
+# >>>>>>> 5f047c6a6eabfaa9a427ab8d93b7ac60eea50ee9
 end
