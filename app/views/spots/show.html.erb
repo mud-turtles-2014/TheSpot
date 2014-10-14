@@ -1,6 +1,6 @@
 
 <div id="spot">
-	
+
 	<div id ="spot-info">
 		<h1><%= @spot.name %></h1>
 		<h3><%= favorites(@spot.favorites_count) %></h3>
@@ -16,6 +16,13 @@
 		<% if @spot.website %>
 		<i class="fa fa-desktop"></i> <%= link_to "Visit webpage", @spot.website %><br>
 		<% end %>
+		<!-- start demo -->
+		<p>lat: <%= @spot.latitude %></p>
+		<p>lon: <%= @spot.longitude %></p>
+		<% @spot.nearbys(1).each do |spot| %>
+			<p><%= link_to spot.name, spot_path(spot) %></p>
+		<% end %>
+		<!-- end demo -->
 		<%#= show_price(@spot.price) %><br>
 	</div>
 	<% if @user %>

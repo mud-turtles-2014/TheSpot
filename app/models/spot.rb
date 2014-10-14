@@ -5,7 +5,7 @@ class Spot < ActiveRecord::Base
   has_many :favorites
 
   geocoded_by :address
-  after_validation: geocode
+  after_validation :geocode
 
   def is_favorited_by(user)
   	self.favorites.include?(user.favorite)

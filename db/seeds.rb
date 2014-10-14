@@ -16,7 +16,8 @@ Favorite.create(user: user, spot: spot)
 Comment.create(user: user, spot: spot, body:"Best cookies ever!")
 
 response = Yelp.client.search('New York City', category_filter: 'breakfast_brunch')
-response.businesses.each do |biz|
+
+response.businesses[0..9].each do |biz|
   Spot.create(user: admin, name: biz.name, address: biz.location.display_address.join(", "), phone: biz.phone, website: biz.url, photo: biz.image_url.gsub!(/ms.jpg/, 'ls.jpg'))
 end
 user_no_fave = User.create(username:"nicolle", password:"test", password_confirmation:"test", email:"nicolle@gmail.com")
