@@ -33,7 +33,7 @@ gem 'spring',        group: :development
 gem 'bcrypt', '~> 3.1.7'
 gem 'factory_girl_rails'
 gem 'pry'
-
+gem 'geocoder'
 
 
 # Use unicorn as the app server
