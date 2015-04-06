@@ -33,6 +33,10 @@ gem 'spring',        group: :development
 gem 'bcrypt', '~> 3.1.7'
 gem 'factory_girl_rails'
 gem 'pry'
+
+group :production do
+      gem 'rails_12factor'
+    end
 # gem 'timecop'
 # gem 'vcr'
 # gem 'typhoeus'
