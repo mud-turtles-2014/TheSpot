@@ -24,21 +24,7 @@ class SpotsController < ApplicationController
     if @spot
       redirect_to spot_path(@spot)
     else
-      response = Yelp.client.search('New York City', category_filter: 'breakfast_brunch', term: params[:spot][:name], limit: 1)
-        if response.businesses.length == 1
-          @yelp_spot = Spot.find_by(name: response.businesses.first.name)
-            if @yelp_spot
-              redirect_to spot_path(@yelp_spot)
-            end
-        else
-          @new_spot = Spot.new(spot_params)
-          @new_spot.assign_attributes(user: current_user)
-  	       if @new_spot.save
-            redirect_to spot_path(@new_spot)
-  	       else
-            redirect_to new_spot_path
-          end
-        end
+      call_api_create
     end
   end
 
@@ -64,12 +50,7 @@ class SpotsController < ApplicationController
     if @spot
       redirect_to spot_path(@spot)
     else
-      @spots = []
-      response = Yelp.client.search('New York City', category_filter: 'breakfast_brunch', term: params[:q])
-      
-      response.businesses.each do |biz|
-        @spots << Spot.where(name: biz.name, address: biz.location.display_address.join(", "), phone: biz.phone, website: biz.url, photo: biz.image_url.gsub!(/ms.jpg/, 'ls.jpg')).first_or_create
-      end
+      call_api_search
     end
   end
 
